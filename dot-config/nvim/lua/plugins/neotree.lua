@@ -3,14 +3,12 @@ return {
     dependencies = {
         {
             'nvim-lua/plenary.nvim',
-            name='plenary'
         },
         {
             'nvim-tree/nvim-web-devicons',
             dependencies = {
                 {
-                    '/rachartier/tiny-devicons-auto-colors.nvim',
-                    name = 'devicon-auto-colors',
+                    'rachartier/tiny-devicons-auto-colors.nvim',
                     config = function ()
                         require('tiny-devicons-auto-colors').setup({
                             colors = require("catppuccin.palettes").get_palette("mocha"),
@@ -19,14 +17,11 @@ return {
                     event = "VeryLazy",
                 },
             },
-            name='devicons'
         },
         {
             'MunifTanjim/nui.nvim',
-            name='nui'
         },
     },
-    name = 'neotree',
     config = function()
         require('neo-tree').setup()
     end,

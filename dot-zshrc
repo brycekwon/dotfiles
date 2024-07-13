@@ -7,15 +7,6 @@
 
 
 ##################################################
-#                 ZSH Keybindings                #
-##################################################
-
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-
-##################################################
 #                 ZSH Configuration              #
 ##################################################
 
@@ -38,6 +29,15 @@ zmodload zsh/zprof
 if [ -z "$TMUX" ]; then
     tmux -2 new-session -A -s home
 fi
+
+##################################################
+#                 ZSH Keybindings                #
+##################################################
+
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
 ##################################################
 #                  ZSH Completions               #
@@ -97,60 +97,6 @@ function colima() {
 }
 
 ##################################################
-#             Wireguard Configuration            #
-##################################################
-
-# start wireguard vpn connection
-function wireguard-start() {
-    # ensure sudo access before continuing
-    if ! sudo -v; then
-        echo "must be sudo to use this command"
-        return 1
-    fi
-
-    # search for available configuration files
-    config_path="/opt/homebrew/etc/wireguard"
-    interface=$(sudo ls $config_path | grep ".conf" | cut -f 1 -d '.' | fzf \
-        --preview "sudo bat -n --color=always $config_path/{}.conf" "$@")
-
-    # handle error in selecting interface
-    if [ -z $interface ]; then
-        echo "no interface selected"
-        return 0
-    fi
-
-    wg-quick up $(basename $interface)
-
-    # revoke sudo access
-    sudo -k
-}
-
-# stop wireguard vpn connection
-function wireguard-stop() {
-    # ensure sudo access before continuing
-    if ! sudo -v; then
-        echo "must be sudo to use this command"
-        return 1
-    fi
-
-    # search for running wireguard connections
-    config_path="/var/run/wireguard"
-    interface=$(sudo ls $config_path | grep ".name" | cut -f 1 -d '.' | fzf \
-        --preview "sudo bat -n --color=always $config_path/{}.name" "$@")
-
-    # handle error in selecting interface
-    if [ -z $interface ]; then
-        echo "no interface selected"
-        return 0
-    fi
-
-    wg-quick down $(basename $interface)
-
-    # revoke sudo access
-    sudo -k
-}
-
-##################################################
 #              Python Configuration              #
 ##################################################
 
@@ -203,7 +149,6 @@ alias l="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git
 alias so="source"
 alias cl="clear"
 alias oo="open"
-alias nv="nvim"
 
 alias md="mkdir -p"
 alias rd="rmdir"
@@ -216,12 +161,11 @@ alias -g ....="cd ../../.."
 alias coffee="caffeinate -disu"
 alias leaks="leaks -noContent -atExit --"
 
-alias net="curl -sS https://am.i.mullvad.net/json | jq"
+alias net="NetworkQuality"
 alias th="tmux -2 new-session -A -s home"
+alias nv="nvim"
 alias top="btop"
 alias ff="fastfetch"
-alias up="wireguard-start"
-alias down="wireguard-stop"
 
 alias update="brew update; brew upgrade; zit-upgrade; pipx upgrade-all"
 
@@ -241,8 +185,8 @@ zit-load "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
 zit-install "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
 zit-load "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
 
-zit-install "fzf-completion" "https://gist.github.com/26f88e81e94467c5cae2df7f43608c8c"
-zit-load "fzf-completion" "fzf-completions.zsh"
+zit-install "fzf-autocomplete" "https://gist.github.com/65ec75f59d318992be150ad4b1b584e3.git"
+zit-load "fzf-autocomplete" "fzf-autocomplete.zsh"
 
 zit-install "pure" "https://github.com/sindresorhus/pure"
 zit-load "pure" "async.zsh"

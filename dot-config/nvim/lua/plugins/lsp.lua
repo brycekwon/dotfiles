@@ -3,14 +3,11 @@ return {
     dependencies = {
         {
             'hrsh7th/cmp-nvim-lsp',
-            name = 'cmp-lsp',
         },
         {
             'williamboman/mason-lspconfig.nvim',
-            name = 'mason-lsp',
         },
     },
-    name = 'lspconfig',
     config = function()
         local lspconfig = require('lspconfig')
         local mason_lsp = require('mason-lspconfig')

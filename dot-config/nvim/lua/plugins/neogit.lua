@@ -3,18 +3,14 @@ return {
     dependencies = {
         {
             'nvim-lua/plenary.nvim',
-            name = "plenary",
         },
         {
             'sindrets/diffview.nvim',
-            name = "diffview",
         },
         {
             'nvim-telescope/telescope.nvim',
-            name = "telescope",
         },
     },
-    name = 'neogit',
     config = function()
         require('neogit').setup()
     end,

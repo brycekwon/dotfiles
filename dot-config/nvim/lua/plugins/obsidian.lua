@@ -3,10 +3,8 @@ return {
     dependencies = {
         {
             'nvim-lua/plenary.nvim',
-            name = 'plenary',
         },
     },
-    name = 'obsidian',
     opts = {
         workspaces = {
             {

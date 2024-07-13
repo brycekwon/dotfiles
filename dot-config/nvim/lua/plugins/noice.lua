@@ -3,7 +3,6 @@ return {
     dependencies = {
         {
             'MunifTanjim/nui.nvim',
-            name = 'nui',
         },
         {
             'rcarriga/nvim-notify',
@@ -21,10 +20,8 @@ return {
                     timeout = 100,
                 })
             end,
-            name = 'notify',
         },
     },
-    name = 'noice',
     config = function()
         require('noice').setup({
             lsp = {

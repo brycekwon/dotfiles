@@ -3,10 +3,8 @@ return {
     dependencies = {
         {
             "nvim-lua/plenary.nvim",
-            name='plenary',
         },
     },
-    name="todo",
     config = function(_, opts)
         require('todo-comments').setup(opts)
 

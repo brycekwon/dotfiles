@@ -3,27 +3,21 @@ return {
     dependencies = {
         {
             'hrsh7th/cmp-path',
-            name = 'cmp-path',
         },
         {
             'hrsh7th/cmp-buffer',
-            name = 'cmp-buffer',
         },
         {
             'hrsh7th/cmp-cmdline',
-            name = 'cmp-cmdline',
         },
         {
             'L3MON4D3/LuaSnip',
             build = 'make install_jsregexp',
-            name='luasnip',
         },
         {
             'onsails/lspkind.nvim',
-            name = 'lspkind',
         },
     },
-    name = 'cmp',
     config = function()
         require('luasnip.loaders.from_vscode').lazy_load()
 
@@ -69,7 +63,6 @@ return {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({}, {
                     {
-                        name = 'cmdline',
                         option = {
                             ignore_cmds = { 'Man', '!' }
                         }

@@ -3,10 +3,8 @@ return     {
     dependencies = {
         {
             'williamboman/mason-lspconfig.nvim',
-            name = 'mason-lsp',
         },
     },
-    name = 'mason',
     config = function()
         require('mason').setup({
             ui = {

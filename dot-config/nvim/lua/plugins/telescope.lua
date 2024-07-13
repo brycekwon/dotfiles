@@ -3,15 +3,12 @@ return     {
     dependencies = {
         {
             'nvim-lua/plenary.nvim',
-            name = 'plenary',
         },
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
-            name = 'telescope-fzf',
         },
     },
-    name = 'telescope',
     config = function()
         local telescope = require('telescope')
         local actions = require('telescope.actions')

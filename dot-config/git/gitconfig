@@ -38,4 +38,5 @@
     gr = "log --color --graph --pretty=format:'%Cred%H%Creset%d%nAuthor: %C(bold blue)%an <%ae> %Cgreen(%ai)%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%n%CresetSigned: %C(bold blue)%GS %C(magenta)%GK%n%n%C(yellow)%s%Creset%n%n%b%n'"
     up = "remote -v"
     dd = "!git diff --name-only --relative --diff-filter=d | xargs bat --diff"
+    df = "!bat --diff"
     authors = "!git log --format='%aN <%aE>' | sort -u"

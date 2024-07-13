@@ -1,6 +1,5 @@
 return {
     'goolord/alpha-nvim',
-    name = 'alpha',
     config = function()
         local dashboard = require('alpha.themes.dashboard')
         dashboard.section.buttons.val = {

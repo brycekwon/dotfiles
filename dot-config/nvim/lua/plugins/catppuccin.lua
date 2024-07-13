@@ -1,9 +1,7 @@
 return {
     'catppuccin/nvim',
-    name = 'catppuccin',
     config = function()
         require('catppuccin').setup()
-        -- vim.cmd([[highlight Normal ctermbg=NONE guibg=NONE]])
         vim.cmd([[
           augroup user_colors
           autocmd!

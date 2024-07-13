@@ -6,7 +6,6 @@ return {
             dependencies = {
                 {
                     'rachartier/tiny-devicons-auto-colors.nvim',
-                    name = 'devicon-auto-colors',
                     config = function ()
                         require('tiny-devicons-auto-colors').setup({
                             colors = require("catppuccin.palettes").get_palette("mocha"),
@@ -15,10 +14,8 @@ return {
                     event = "VeryLazy",
                 },
             },
-            name = 'devicons',
         },
     },
-    name = 'lualine',
     config = function()
         require('lualine').setup({
             options = {
