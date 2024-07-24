@@ -47,10 +47,25 @@ user_pref("browser.urlbar.suggest.engines", false);
 
 /* set the default DNS setting to off */
 user_pref("network.trr.mode", 5);
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query")
 user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query");
-user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query");
+user_pref("network.trr.mode", 5);
+user_pref("network.trr.mode", 5);
+user_pref("network.trr.mode", 5);
+user_pref("network.trr.mode", 5);
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query")
+user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query");
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query")
+user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query");
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query")
+user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query");
+user_pref("network.trr.custom_uri", "https://base.dns.mullvad.net/dns-query")
+user_pref("network.trr.uri", "https://base.dns.mullvad.net/dns-query");
 
 /* save to downloads folder */
+user_pref("browser.download.useDownloadDir", true);
+user_pref("browser.download.useDownloadDir", true);
+user_pref("browser.download.useDownloadDir", true);
 user_pref("browser.download.useDownloadDir", true);
 
 /* save files with unknown mimetypes by default */
@@ -58,3 +73,8 @@ user_pref("browser.download.always_ask_before_handling_new_types", false);
 
 /* disable add mailto application */
 user_pref("network.protocol-handler.external.mailto", false);
+
+/* override recipe: RFP is not for me ***/
+user_pref("privacy.resistFingerprinting", false); // 4501
+user_pref("privacy.resistFingerprinting.letterboxing", false); // 4504 [pointless if not using RFP]
+user_pref("webgl.disabled", false); // 4520 [mostly pointless if not using RFP]

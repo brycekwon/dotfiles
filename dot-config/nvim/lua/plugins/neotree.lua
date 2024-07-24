@@ -22,8 +22,17 @@ return {
             'MunifTanjim/nui.nvim',
         },
     },
-    config = function()
-        require('neo-tree').setup()
+    opts = {
+        filesystem = {
+            filtered_items = {
+                hide_by_name = {
+                   '__pycache__'
+                },
+            }
+        },
+    },
+    config = function(_, opts)
+        require('neo-tree').setup(opts)
     end,
     keys = {
         {'<leader>e', '<CMD>Neotree toggle<CR>', mode={'n', 'v'}, desc='Toggle filetree', noremap=true, silent=true },

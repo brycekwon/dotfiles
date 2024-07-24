@@ -25,6 +25,7 @@ return     {
                 file_ignore_patterns = {
                     '%.png', '%.jpg', '%.jpeg', '%.webp', '%.gif', '%.pdf', '%.odt', '%.docx',
                     '%.ods', '%.xlsx', '%.pptx', '%.kdbx', '%.pcapng', '%.gpg', '%.kbx', '%.bin',
+                    '%_%_pycache%_%_/*', '%.ipynb%_checkpoints/*'
                 },
             },
             pickers = {

@@ -15,12 +15,6 @@ keymap.set({'n', 'v'}, 'p', '"0p', { noremap=true, silent=true })
 keymap.set({'n', 'v'}, 'P', '"0P', { noremap=true, silent=true })
 
 -- custom remaps --
-keymap.set({'n', 'v'}, '[[', '<CMD>1<CR>', { noremap = true, silent=true })      -- move bottom of buffer
-keymap.set({'n', 'v'}, ']]', '<CMD>$<CR>', { noremap = true, silent=true })       -- move top of buffer
-
-keymap.set({'n', 'v'}, ';', '{', { noremap = true, silent=true })    -- move bottom of paragraph
-keymap.set({'n', 'v'}, "'", '}', { noremap = true, silent=true })    -- move top of paragraph
-
 keymap.set({'n', 'v'}, '.', '$', { noremap = true, silent=true })    -- move end of line
 keymap.set({'n', 'v'}, ',', '^', { noremap = true, silent=true })    -- move beginning of line
 
@@ -87,13 +81,9 @@ keymap.set('', '<C-LEFT>', 'b', { noremap=true, silent=true })
 keymap.set('', '<C-RIGHT>', 'w', { noremap=true, silent=true })
 
 -- disabled keymaps (unused or remapped) --
-keymap.set({'n', 'v'}, 'c', '<Nop>')
-keymap.set({'n', 'v'}, 'C', '<Nop>')
 keymap.set({'n', 'v'}, 's', '<Nop>')
 keymap.set({'n', 'v'}, '0', '<Nop>')
 keymap.set({'n', 'v'}, 'u', '<Nop>')
 keymap.set({'n', 'v'}, 'q', '<Nop>')
-keymap.set({'n', 'v'}, '{', '<Nop>')
-keymap.set({'n', 'v'}, '}', '<Nop>')
 keymap.set({'n', 'v'}, '$', '<Nop>')
 keymap.set({'n', 'v'}, '^', '<Nop>')
