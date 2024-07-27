@@ -23,6 +23,7 @@ export LESS="-RFX"
 export LESSHISTFILE=-
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export SHELL_SESSIONS_DISABLE=1
 
 ##################################################
 #             Pure Theme Configuration           #

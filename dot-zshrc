@@ -26,7 +26,7 @@ setopt hist_find_no_dups
 zmodload zsh/zprof
 
 # start up tmux session by default
-if [ -z "$TMUX" ]; then
+if [ -z "$TMUX" ] && [ -z "$TERM_PROGRAM" ]; then
     tmux -2 new-session -A -s home
 fi
 
