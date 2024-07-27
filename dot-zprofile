@@ -106,6 +106,10 @@ export JUPYTER_CONFIG_DIR="$XDG_DATA_HOME/jupyter"
 export IPYTHONDIR="$JUPYTER_CONFIG_DIR/ipython"
 export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 
+export CONDA_AUTO_ACTIVATE_BASE=false
+export CONDA_CHANGEPS1=false
+export CONDA_ENVS_DIRS="$XDG_DATA_HOME/python/envs"
+
 ##################################################
 #               Node Configuration               #
 ##################################################
