@@ -29,11 +29,11 @@ Temporary Items
 /.local/
 /.conda/
 /.docker/
-/.vscode-oss/
-/Pictures/
-/Music/
-/Movies/
 /Library/
+/Movies/
+/Music/
+/Pictures/
+/Public/
 /.Trash/
 
 # Programming #
