@@ -10,7 +10,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_BIN_HOME="$HOME/.local/bin"
 
 ##################################################
 #                ZSH Configuration               #
@@ -143,9 +142,12 @@ PATH="/sbin:$PATH"
 PATH="/usr/bin:$PATH"
 PATH="/usr/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
-PATH="$HOMEBREW_PREFIX/bin:$PATH"
-PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-PATH="$XDG_BIN_HOME:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 PATH="$FNM_MULTISHELL_PATH/bin:$PATH"
 PATH="$CARGO_HOME/bin:$PATH"
+PATH="$HOMEBREW_PREFIX/bin:$PATH"
+PATH="$HOMEBREW_PREFIX/sbin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
 export PATH

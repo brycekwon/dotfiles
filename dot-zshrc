@@ -149,6 +149,7 @@ alias l="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git
 alias so="source"
 alias cl="clear"
 alias oo="open"
+alias ex="exit"
 
 alias md="mkdir -p"
 alias rd="rmdir"
@@ -167,7 +168,7 @@ alias nv="nvim"
 alias top="btop"
 alias ff="fastfetch"
 
-alias update="brew update; brew upgrade; zit-upgrade; pipx upgrade-all"
+alias update="brew update; brew upgrade; zit-upgrade"
 
 
 ################################################################################

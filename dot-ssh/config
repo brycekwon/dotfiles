@@ -18,4 +18,5 @@ Host colima
 
 Host *
     IdentityAgent "~/Library/Group Containers/group.strongbox.mac.mcguill/agent.sock"
-    IdentityFile "~/.ssh/remote_access.pub"
+    IdentityFile "~/.ssh/brycekwon.pub"
+    # IdentityFile "~/.ssh/remote_access.pub"
