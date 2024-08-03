@@ -1,0 +1,320 @@
+{
+  "0": {
+    "name": "yt-dlp-2024.7.25",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "yt-dlp",
+    "system": "aarch64-darwin",
+    "version": "2024.7.25"
+  },
+  "1": {
+    "name": "python3.11-pip-24.0",
+    "outputName": "",
+    "outputs": {
+      "man": null,
+      "out": null
+    },
+    "pname": "python3.11-pip",
+    "system": "aarch64-darwin",
+    "version": "24.0"
+  },
+  "10": {
+    "name": "docker-compose-2.29.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "docker-compose",
+    "system": "aarch64-darwin",
+    "version": "2.29.1"
+  },
+  "11": {
+    "name": "docker-27.1.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "docker",
+    "system": "aarch64-darwin",
+    "version": "27.1.1"
+  },
+  "12": {
+    "name": "colima-0.6.10",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "colima",
+    "system": "aarch64-darwin",
+    "version": "0.6.10"
+  },
+  "13": {
+    "name": "pinentry-tty-1.3.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "pinentry-tty",
+    "system": "aarch64-darwin",
+    "version": "1.3.1"
+  },
+  "14": {
+    "name": "btop-1.3.2",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "btop",
+    "system": "aarch64-darwin",
+    "version": "1.3.2"
+  },
+  "15": {
+    "name": "ffmpeg-7.0.1",
+    "outputName": "",
+    "outputs": {
+      "bin": null,
+      "man": null
+    },
+    "pname": "ffmpeg",
+    "system": "aarch64-darwin",
+    "version": "7.0.1"
+  },
+  "16": {
+    "name": "tmux-3.4",
+    "outputName": "",
+    "outputs": {
+      "man": null,
+      "out": null
+    },
+    "pname": "tmux",
+    "system": "aarch64-darwin",
+    "version": "3.4"
+  },
+  "17": {
+    "name": "stow-2.4.0",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "stow",
+    "system": "aarch64-darwin",
+    "version": "2.4.0"
+  },
+  "18": {
+    "name": "hugo-0.129.0",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "hugo",
+    "system": "aarch64-darwin",
+    "version": "0.129.0"
+  },
+  "19": {
+    "name": "fnm-1.37.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "fnm",
+    "system": "aarch64-darwin",
+    "version": "1.37.1"
+  },
+  "2": {
+    "name": "python3-3.11.9",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "python3",
+    "system": "aarch64-darwin",
+    "version": "3.11.9"
+  },
+  "20": {
+    "name": "jq-1.7.1",
+    "outputName": "",
+    "outputs": {
+      "bin": null,
+      "man": null
+    },
+    "pname": "jq",
+    "system": "aarch64-darwin",
+    "version": "1.7.1"
+  },
+  "21": {
+    "name": "go-1.22.5",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "go",
+    "system": "aarch64-darwin",
+    "version": "1.22.5"
+  },
+  "22": {
+    "name": "tokei-12.1.2",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "tokei",
+    "system": "aarch64-darwin",
+    "version": "12.1.2"
+  },
+  "23": {
+    "name": "p7zip-17.05",
+    "outputName": "",
+    "outputs": {
+      "man": null,
+      "out": null
+    },
+    "pname": "p7zip",
+    "system": "aarch64-darwin",
+    "version": "17.05"
+  },
+  "24": {
+    "name": "neovim-0.10.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "neovim",
+    "system": "aarch64-darwin",
+    "version": "0.10.1"
+  },
+  "25": {
+    "name": "gawk-5.2.2",
+    "outputName": "",
+    "outputs": {
+      "man": null,
+      "out": null
+    },
+    "pname": "gawk",
+    "system": "aarch64-darwin",
+    "version": "5.2.2"
+  },
+  "26": {
+    "name": "gnupg-2.4.5",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "gnupg",
+    "system": "aarch64-darwin",
+    "version": "2.4.5"
+  },
+  "27": {
+    "name": "coreutils-9.5",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "coreutils",
+    "system": "aarch64-darwin",
+    "version": "9.5"
+  },
+  "28": {
+    "name": "gnused-4.9",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "gnused",
+    "system": "aarch64-darwin",
+    "version": "4.9"
+  },
+  "29": {
+    "name": "gnutar-1.35",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "gnutar",
+    "system": "aarch64-darwin",
+    "version": "1.35"
+  },
+  "3": {
+    "name": "fd-10.1.0",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "fd",
+    "system": "aarch64-darwin",
+    "version": "10.1.0"
+  },
+  "30": {
+    "name": "ripgrep-14.1.0",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "ripgrep",
+    "system": "aarch64-darwin",
+    "version": "14.1.0"
+  },
+  "4": {
+    "name": "fzf-0.54.2",
+    "outputName": "",
+    "outputs": {
+      "man": null,
+      "out": null
+    },
+    "pname": "fzf",
+    "system": "aarch64-darwin",
+    "version": "0.54.2"
+  },
+  "5": {
+    "name": "corepack-nodejs-20.15.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "corepack-nodejs",
+    "system": "aarch64-darwin",
+    "version": "20.15.1"
+  },
+  "6": {
+    "name": "perl5.38.2-Image-ExifTool-12.84",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "perl5.38.2-Image-ExifTool",
+    "system": "aarch64-darwin",
+    "version": "12.84"
+  },
+  "7": {
+    "name": "nodejs-20.15.1",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "nodejs",
+    "system": "aarch64-darwin",
+    "version": "20.15.1"
+  },
+  "8": {
+    "name": "bat-0.24.0",
+    "outputName": "",
+    "outputs": {
+      "out": null
+    },
+    "pname": "bat",
+    "system": "aarch64-darwin",
+    "version": "0.24.0"
+  },
+  "9": {
+    "name": "eza-0.18.23",
+    "outputName": "",
+    "outputs": {
+      "man": null,
+      "out": null
+    },
+    "pname": "eza",
+    "system": "aarch64-darwin",
+    "version": "0.18.23"
+  }
+}

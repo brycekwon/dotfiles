@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Check if a file is provided as an argument
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <file>"
+    exit 1
+fi
+
+# Get the input file
+input_file="$1"
+
+# Check if the file exists
+if [ ! -f "$input_file" ]; then
+    echo "File not found!"
+    exit 1
+fi
+
+# Compute the hash of the file (using SHA256 in this example)
+hash=$(shasum "$input_file" | awk '{ print $1 }')
+
+# Get the file extension
+extension="${input_file##*.}"
+
+# Create the new file name with the hash and the original extension
+new_file="${hash}.${extension}"
+
+# Rename the file
+mv "$input_file" "$new_file"
+
+echo "File renamed to: $new_file"

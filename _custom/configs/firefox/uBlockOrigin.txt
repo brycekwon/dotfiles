@@ -1,0 +1,42 @@
+{
+  "timeStamp": 1721794469985,
+  "version": "1.58.0",
+  "userSettings": {
+    "advancedUserEnabled": true,
+    "contextMenuEnabled": false,
+    "importedLists": [],
+    "largeMediaSize": 1000,
+    "popupPanelSections": 31,
+    "showIconBadge": false,
+    "tooltipsDisabled": true
+  },
+  "selectedFilterLists": [
+    "user-filters",
+    "ublock-filters",
+    "ublock-badware",
+    "ublock-privacy",
+    "ublock-quick-fixes",
+    "ublock-unbreak",
+    "easylist",
+    "easyprivacy",
+    "urlhaus-1",
+    "plowe-0",
+    "fanboy-cookiemonster",
+    "ublock-cookies-easylist",
+    "fanboy-social",
+    "easylist-chat",
+    "easylist-newsletters",
+    "easylist-notifications",
+    "easylist-annoyances",
+    "ublock-annoyances"
+  ],
+  "hiddenSettings": {},
+  "whitelist": [
+    "chrome-extension-scheme",
+    "moz-extension-scheme"
+  ],
+  "dynamicFilteringString": "* * 3p-script block\n* * 3p-frame block\n* * 3p block\ngithub.com githubassets.com * noop\ngithub.com notebooks.githubusercontent.com * noop\ngithub.com avatars.githubusercontent.com * noop\ngithub.com user-images.githubusercontent.com * noop\nwww.linkedin.com licdn.com * noop\nwww.linkedin.com epsiloncdn.net * noop\nwww.youtube.com ytimg.com * noop\nwww.youtube.com googlevideo.com * noop\nwww.youtube.com gstatic.com * noop\nwww.youtube.com ggpht.com * noop\nwww.youtube.com googleusercontent.com * noop\nmonkeytype.com identitytoolkit.googleapis.com * noop\nlogin.microsoftonline.com t-msedge.net * noop\nlogin.microsoftonline.com live.com * noop\nlogin.microsoftonline.com aadg.trafficmanager.net * noop\nwww.microsoft365.com dscd.akamaiedge.net * noop\nwww.microsoft365.com microsoftonline.com * noop\nwww.microsoft365.com office.net * noop\nwww.microsoft365.com dscg.akamaiedge.net * noop\nlogin.microsoftonline.com msauth.net * noop\nlogin.microsoftonline.com msftauth.net * noop\nupedu-my.sharepoint.com office.net * noop\nupedu-my.sharepoint.com dscg.akamaiedge.net * noop\nupedu-my.sharepoint.com dscd.akamaiedge.net * noop\nteams.microsoft.com office.net * noop\nteams.microsoft.com dscd.akamai.net * noop\nteams.microsoft.com dscg.akamaiedge.net * noop\nteams.microsoft.com microsoftonline.com * noop\nteams.microsoft.com sharepoint.com * noop\nteams.microsoft.com dscd.akamaiedge.net * noop\nteams.microsoft.com sigmacdn.net * noop\nupedu-my.sharepoint.com microsoftonline.com * noop\nstackoverflow.com sstatic.net * noop\ngithub.com raw.githubusercontent.com * noop\nwww.reddit.com redditstatic.com * noop\nwww.reddit.com reddit.map.fastly.net * noop\nwww.reddit.com redditmedia.com * noop\ndiscuss.privacyguides.net privacyguidesusercontent.com * noop\ndiscuss.privacyguides.net b-cdn.net * noop\nverified.capitalone.com nc0.co * noop\nverified.capitalone.com x.akamaiedge.net * noop\nverified.capitalone.com capitalonegslbex.com * noop\nmyaccounts.capitalone.com capitalonegslbex.com * noop\nmyaccounts.capitalone.com x.akamaiedge.net * noop\nmyaccounts.capitalone.com omtrdc.net * noop\nmyaccounts.capitalone.com d1af033869koo7.cloudfront.net * noop\nwww.bankofamerica.com bac-assets.com * noop\nwww.bankofamerica.com chicdn.net * noop\n9anime.pe cloudflare.com * noop\n9anime.pe bootstrapcdn.com * noop\n9anime.pe rapid-cloud.co * noop\n9anime.pe bunnyccdn.co * noop\n9anime.pe jwpcdn.com * noop\n9anime.pe jwplayer-dualstack.map.fastly.net * noop\n9anime.pe biananset.net * noop\n9anime.pe noitarolpxe.dev * noop\n9anime.pe jwplatform.com * noop\nforms.office.com office.net * noop\nforms.office.com dscms.akamai.net * noop\nforms.office.com microsoft.com * noop\nwww.creditkarma.com creditkarmacdn-a.akamaihd.net * noop\nwww.creditkarma.com imgix.net * noop\nwww.creditkarma.com imgix.map.fastly.net * noop\naccounts.creditkarma.com creditkarmacdn-a.akamaihd.net * noop\naccounts.creditkarma.com b.akamai.net * noop\naccounts.creditkarma.com imgix.net * noop\naccounts.creditkarma.com imgix.map.fastly.net * noop\naccounts.creditkarma.com b.akamaiedge.net * noop\nwww.creditkarma.com b.akamaiedge.net * noop\nwww.creditkarma.com b.akamai.net * noop",
+  "urlFilteringString": "",
+  "hostnameSwitchesString": "no-csp-reports: * true",
+  "userFilters": "!!!!! MAKING YOUTUBE USABLE !!!!!\n\n! Block YouTube Shorts !\nwww.youtube.com##ytd-rich-grid-row,#contents.ytd-rich-grid-row:style(display: contents !important)\nwww.youtube.com##ytd-grid-video-renderer:has(#video-title:has-text(/(^| )#Shorts?( |$)/i))\nwww.youtube.com##ytd-rich-item-renderer:has(#video-title:has-text(/(^| )#Shorts?( |$)/i))\nwww.youtube.com##ytd-grid-video-renderer:has([overlay-style=\"SHORTS\"])\nwww.youtube.com##ytd-rich-item-renderer:has([overlay-style=\"SHORTS\"])\nwww.youtube.com##ytd-video-renderer:has([overlay-style=\"SHORTS\"])\nwww.youtube.com##ytd-item-section-renderer.ytd-section-list-renderer[page-subtype=\"subscriptions\"]:has(ytd-video-renderer:has([overlay-style=\"SHORTS\"]))\nwww.youtube.com##ytd-guide-entry-renderer:has(yt-formatted-string:has-text(/^Shorts$/i))\nwww.youtube.com##ytd-mini-guide-entry-renderer:has(.title:has-text(/^Shorts$/i))\nwww.youtube.com##ytd-rich-section-renderer:has(#title:has-text(/(^| )Shorts( |$)/i))\nwww.youtube.com##ytd-reel-shelf-renderer:has(.ytd-reel-shelf-renderer:has-text(/(^| )Shorts( |$)/i))\nwww.youtube.com##tp-yt-paper-tab:has(.tp-yt-paper-tab:has-text(Shorts))\nwww.youtube.com##yt-tab-shape:has-text(/^Shorts$/)\nwww.youtube.com##ytd-reel-shelf-renderer.ytd-structured-description-content-renderer:has-text(/^Shorts remixing this video$/i)\nwww.youtube.com##yt-chip-cloud-chip-renderer:has(yt-formatted-string:has-text(/^Shorts$/i))\n\n\n!!!!! MAKING LINKEDIN USABLE !!!!!\n\n! Remove Advertisments for LinkedIn Premium !\nwww.linkedin.com##.global-footer--static.global-footer\nwww.linkedin.com##.mb2.ph1.overflow-hidden.artdeco-card\nwww.linkedin.com##.relative.flex-column.display-flex.align-items-left.mb4.artdeco-card.p4.mn-sales-navigator-upsell\nwww.linkedin.com##li.global-nav__primary-item:nth-of-type(3)\nwww.linkedin.com##li.global-nav__primary-item:nth-of-type(8)\nwww.linkedin.com##.align-items-center.display-flex.mt5\nwww.linkedin.com###feed-news-module > div:nth-of-type(2)\nwww.linkedin.com##.list-style-none.mt2\n\n\n!!!!! MAKING GITHUB USABLE !!!!!\n\n! Remove Feedback Suggestions !\ngithub.com##.flex-items-center.flex-justify-between.d-flex > .flex-items-center.d-flex > .Link\ngithub.com##.ml-2.text-normal.color-fg-accent.Button.Button--medium.Button--link\n\n\n!!!!! MAKING MICROSOFT OFFICE USABLE !!!!!\n\n! Microsoft Teams !\nteams.microsoft.com##.f6juhto.f1orqat1.ffbvwxd.f1lvywb8.f1ozlkrg.f10ostut.f1deotkl.f1krrbdw.___rsbhky0.r2oyxsj.fui-MessageBar"
+}

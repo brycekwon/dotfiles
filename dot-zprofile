@@ -36,18 +36,6 @@ export PURE_GIT_PULL=0
 
 export ZIT_MODULES_HOME="$XDG_DATA_HOME/zsh/plugins"
 
-##################################################
-#             Homebrew Configuration             #
-##################################################
-
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
-
-export HOMEBREW_NO_ENV_HINTS=1
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_INSECURE_REDIRECT=1
-
 
 ################################################################################
 #                                 GENERAL TOOLS                                #
@@ -91,13 +79,6 @@ export GIT_CONFIG_NOSYSTEM=1
 export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/gitconfig"
 
 ##################################################
-#              Docker Configuration              #
-##################################################
-
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export DOCKER_DATA_ROOT="$XDG_DATA_HOME/docker"
-
-##################################################
 #              Python Configuration              #
 ##################################################
 
@@ -105,32 +86,17 @@ export JUPYTER_CONFIG_DIR="$XDG_DATA_HOME/jupyter"
 export IPYTHONDIR="$JUPYTER_CONFIG_DIR/ipython"
 export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 
-export CONDA_AUTO_ACTIVATE_BASE=false
-export CONDA_CHANGEPS1=false
-export CONDA_ENVS_DIRS="$XDG_DATA_HOME/python/envs"
-
 ##################################################
 #               Node Configuration               #
 ##################################################
 
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 
-export FNM_DIR="$XDG_DATA_HOME/node"
-export FNM_MULTISHELL_PATH="$FNM_DIR/versions"
-export FNM_COREPACK_ENABLED="true"
-
 ##################################################
 #                 Go Configuration               #
 ##################################################
 
 export GOPATH="$XDG_DATA_HOME/go"
-
-##################################################
-#               Rust Configuration               #
-##################################################
-
-export CARGO_HOME="$XDG_DATA_HOME/rust/cargo"
-export RUSTUP_HOME="$XDG_DATA_HOME/rust/rustup"
 
 
 ################################################################################
@@ -143,11 +109,4 @@ PATH="/usr/bin:$PATH"
 PATH="/usr/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
-PATH="$FNM_MULTISHELL_PATH/bin:$PATH"
-PATH="$CARGO_HOME/bin:$PATH"
-PATH="$HOMEBREW_PREFIX/bin:$PATH"
-PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-PATH="$HOMEBREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
 export PATH

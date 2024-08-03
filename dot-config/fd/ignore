@@ -40,5 +40,7 @@ Temporary Items
 node_modules/
 venv/
 .git/
+.nix-defexpr/
+.nix-profile/
 
-_archived
+_archives

@@ -97,31 +97,6 @@ function colima() {
 }
 
 ##################################################
-#              Python Configuration              #
-##################################################
-
-# lazy load conda && get rid of annoying ~/.conda
-function conda() {
-    # check if the known environment variable is set
-    if [ -z "$CONDA_EXE" ]; then
-        eval "$($HOMEBREW_PREFIX/Caskroom/miniconda/base/bin/conda 'shell.zsh' 'hook' 2>/dev/null)"
-    fi
-
-    local cmd="${1-__missing__}"
-    case "$cmd" in
-        (activate | deactivate) __conda_activate "$@" ;;
-        (install | update | upgrade | remove | uninstall) 
-            __conda_exe "$@" || return
-            __conda_reactivate ;;
-        (*) 
-            __conda_exe "$@" ;;
-    esac
-
-    # clean up unnecessary conda artifacts
-    rm -rf "$HOME/.conda"
-}
-
-##################################################
 #             Utilities Configuration            #
 ##################################################
 
@@ -143,13 +118,13 @@ alias cat="bat"
 
 alias ls="eza -g --icons='always' --ignore-glob '*.git'"
 alias la="eza -ag --icons='always' --ignore-glob '*.git'"
-alias ll="eza -log --icons='always' --time-style='long-iso' --ignore-glob '*.git'"
-alias l="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git'"
+alias ll="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git'"
+alias lt="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git' -T -L 2"
 
 alias so="source"
 alias cl="clear"
 alias oo="open"
-alias ex="exit"
+alias ee="exit"
 
 alias md="mkdir -p"
 alias rd="rmdir"
@@ -166,7 +141,6 @@ alias net="NetworkQuality"
 alias th="tmux -2 new-session -A -s home"
 alias nv="nvim"
 alias top="btop"
-alias ff="fastfetch"
 
 alias update="brew update; brew upgrade; zit-upgrade"
 
