@@ -1,0 +1,123 @@
+################################################################################
+#                                GENERAL SETTINGS                              #
+################################################################################
+
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
+##################################################
+#                Bash Configuration              #
+##################################################
+
+# setting up history options
+HISTSIZE=500
+HISTFILESIZE=500
+HISTFILE="$XDG_DATA_HOME/bash/history"
+shopt -s histappend
+shopt -s cmdhist
+HISTIGNORE="&:ls:[bf]g"
+HISTCONTROL=ignoredups:ignorespace
+
+# start up tmux session by default
+if [ -z "$TMUX" ] && [ -z "$TERM_PROGRAM" ]; then
+    tmux -2 new-session -A -s home
+fi
+
+##################################################
+#                 Bash Keybindings               #
+##################################################
+
+bind '"5C": forward-word'
+bind '"5D": backward-word'
+bind '"5A": history-search-backward'
+bind '"5B": history-search-forward'
+
+
+##################################################
+#                 Bash Completions               #
+##################################################
+
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+bind 'set show-all-if-ambiguous on'  # Show all completions if there's ambiguity
+bind 'set completion-ignore-case on'  # Ignore case when completing
+bind 'set menu-complete-display-prefix on'
+complete -o nospace -o default -o bashdefault -o nospace -F _my_custom_completion my_command
+
+
+################################################################################
+#                               Developer Tools                                #
+################################################################################
+
+##################################################
+#              Colima Configuration              #
+##################################################
+
+function colima() {
+    if [[ $1 == "start" ]]; then
+        command colima --ssh-config=false "$@"
+    else
+        command colima "$@"
+    fi
+}
+
+##################################################
+#              Zoxide Configuration              #
+##################################################
+
+eval "$(zoxide init bash)"
+
+##################################################
+#             Utilities Configuration            #
+##################################################
+
+# more versatile open command
+function open() {
+    if [ $# -eq 0 ]; then
+        command open ./
+    else
+        command open "$@"
+    fi
+}
+
+
+################################################################################
+#                             Configure Bash Aliases                           #
+################################################################################
+
+alias cd="z"
+alias cat="bat"
+
+alias la="ls -AH"
+alias ll="ls -lAHh --time-style=long-iso"
+# alias ls="eza -g --icons='always' --ignore-glob '*.git'"
+# alias la="eza -ag --icons='always' --ignore-glob '*.git'"
+# alias ll="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git'"
+# alias lt="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git' -T -L 2"
+
+alias so="source"
+alias cl="clear"
+alias oo="open"
+alias ee="exit"
+
+alias md="mkdir -p"
+alias rd="rmdir"
+
+alias -- -="cd -"
+
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ....="cd ../../../"
+
+alias coffee="caffeinate -disu"
+alias net="NetworkQuality"
+alias leaks="leaks -noContent -atExit --"
+
+alias th="tmux -2 new-session -A -s home"
+alias nv="nvim"
+alias top="btop"
+
+export PS1="\n\w\n❯ "
