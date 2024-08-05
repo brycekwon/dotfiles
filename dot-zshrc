@@ -22,9 +22,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# enable zprof for zsh profiling
-zmodload zsh/zprof
-
 # start up tmux session by default
 if [ -z "$TMUX" ] && [ -z "$TERM_PROGRAM" ]; then
     tmux -2 new-session -A -s home
@@ -78,9 +75,8 @@ _fzf_comprun() {
     case "$command" in
         export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
         ssh)          fzf --preview 'dig {}'                   "$@" ;;
-        cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
-        nv|oo)        fzf --preview 'if [ -d {} ]; then tree -C {}; else bat -n --color=always {} | head -200; fi' "$@" ;;
-        *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+        cd)           fzf --preview 'eza -T -L 3 {} | head -200'   "$@" ;;
+        *)            fzf --preview 'if [ -d {} ]; then eza -T -L 3 {}; else bat -n --color=always {} | head -200; fi' "$@" ;;
     esac
 }
 
@@ -95,6 +91,12 @@ function colima() {
         command colima "$@"
     fi
 }
+
+##################################################
+#              Zoxide Configuration              #
+##################################################
+
+eval "$(zoxide init zsh)"
 
 ##################################################
 #             Utilities Configuration            #
@@ -114,11 +116,12 @@ function open() {
 #                             Configure ZSH Aliases                            #
 ################################################################################
 
+alias cd="z"
 alias cat="bat"
 
-alias ls="eza -g --icons='always' --ignore-glob '*.git'"
-alias la="eza -ag --icons='always' --ignore-glob '*.git'"
-alias ll="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git'"
+alias ls="eza -g --icons='always'"
+alias la="eza -ag --icons='always'"
+alias ll="eza -laog --icons='always' --time-style='long-iso'"
 alias lt="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git' -T -L 2"
 
 alias so="source"
@@ -135,14 +138,12 @@ alias -g ...="cd ../.."
 alias -g ....="cd ../../.."
 
 alias coffee="caffeinate -disu"
+alias net="NetworkQuality"
 alias leaks="leaks -noContent -atExit --"
 
-alias net="NetworkQuality"
 alias th="tmux -2 new-session -A -s home"
 alias nv="nvim"
 alias top="btop"
-
-alias update="brew update; brew upgrade; zit-upgrade"
 
 
 ################################################################################
