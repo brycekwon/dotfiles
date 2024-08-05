@@ -35,11 +35,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
         bufmap("n", "<leader>rs", ":LspRestart<CR>")
     end
 })
-
-vim.cmd([[
-    augroup auto_textwidth
-    autocmd!
-    autocmd FileType markdown setlocal textwidth=100
-    autocmd FileType '*' setlocal textwidth=0
-    augroup END
-]])
