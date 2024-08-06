@@ -116,13 +116,9 @@ function open() {
 #                             Configure ZSH Aliases                            #
 ################################################################################
 
-alias cd="z"
-alias cat="bat"
-
-alias ls="eza -g --icons='always'"
-alias la="eza -ag --icons='always'"
-alias ll="eza -laog --icons='always' --time-style='long-iso'"
-alias lt="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git' -T -L 2"
+##################################################
+#                    Renaming                    #
+##################################################
 
 alias so="source"
 alias cl="clear"
@@ -141,9 +137,32 @@ alias coffee="caffeinate -disu"
 alias net="NetworkQuality"
 alias leaks="leaks -noContent -atExit --"
 
+##################################################
+#                    Replacing                   #
+##################################################
+
+alias cd="z"
+alias cat="bat"
+alias ls="eza -g --icons='always'"
+alias la="eza -ag --icons='always'"
+alias ll="eza -laog --icons='always' --time-style='long-iso'"
+alias lt="eza -laog --icons='always' --time-style='long-iso' --ignore-glob '*.git' -T -L 2"
+
+##################################################
+#                    Aliasing                    #
+##################################################
+
 alias th="tmux -2 new-session -A -s home"
 alias nv="nvim"
 alias top="btop"
+
+alias nls="nix-env -q"
+
+##################################################
+#            Nix Shell Configurations            #
+##################################################
+
+alias nix-shell="nix-shell --command 'zsh'"
 
 
 ################################################################################
