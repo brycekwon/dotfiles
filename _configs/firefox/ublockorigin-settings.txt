@@ -1,0 +1,45 @@
+{
+  "timeStamp": 1730049493067,
+  "version": "1.60.0",
+  "userSettings": {
+    "advancedUserEnabled": true,
+    "contextMenuEnabled": false,
+    "ignoreGenericCosmeticFilters": true,
+    "importedLists": [],
+    "largeMediaSize": 500,
+    "popupPanelSections": 31,
+    "showIconBadge": false,
+    "tooltipsDisabled": true
+  },
+  "selectedFilterLists": [
+    "user-filters",
+    "ublock-filters",
+    "ublock-badware",
+    "ublock-privacy",
+    "ublock-quick-fixes",
+    "ublock-unbreak",
+    "easylist",
+    "easyprivacy",
+    "block-lan",
+    "urlhaus-1",
+    "plowe-0",
+    "fanboy-cookiemonster",
+    "ublock-cookies-easylist",
+    "fanboy-social",
+    "easylist-chat",
+    "easylist-newsletters",
+    "easylist-notifications",
+    "easylist-annoyances",
+    "ublock-annoyances"
+  ],
+  "hiddenSettings": {},
+  "whitelist": [
+    "chrome-extension-scheme",
+    "moz-extension-scheme",
+    "newtab.about-scheme"
+  ],
+  "dynamicFilteringString": "",
+  "urlFilteringString": "",
+  "hostnameSwitchesString": "no-csp-reports: * true",
+  "userFilters": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!                                                                                              !!!\n!!!                                          Personal                                            !!!\n!!!                                                                                              !!!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n! Remove popups for third-party logins\n*###credential_picker_container\n\n# EDU specific\n||unhosting.site\n\n! https://www.hostinger.com - remove ai chatbot popup\nwww.hostinger.com##.h-ai-chatbot-root\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!                                                                                              !!!\n!!!                      GitHub Clear View (clean up GitHub UI/UX clutter)                       !!!\n!!!                                                                                              !!!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n! disable and remove GitHub copilot (https://dustri.org/b/masking-github-copilot.html)\n||githubcopilot.com\ngithub.com###blob-view-header-copilot-icon\ngithub.com###copilot-floating-button\ngithub.com###copilot-chat-header-button\ngithub.com##li.ActionListItem>a[href=\"/copilot\"]\ngithub.com##li>a[href=\"/github-copilot/signup\"]\ngithub.com##div>button#copilot-md-menu-anchor-new_comment_field\ngithub.com##div#copilot-button-container\ngithub.com##react-partial[partial-name=\"copilot-code-chat\"]\ngithub.com##li.ActionList-sectionDivider:has(h3:has-text(Copilot))\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!                                                                                              !!!\n!!!                     YouTube Clear View (clean up YouTube UI/UX clutter)                      !!!\n!!!                                                                                              !!!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n! hide the text labels of extra features (dislike/share/download/report/save)\nwww.youtube.com###actions.ytd-watch-metadata button > div[class$=\"text-content\"]:not(:has-text(/[\\d]/))\nwww.youtube.com###actions.ytd-watch-metadata ytd-button-renderer .yt-spec-button-shape-next .yt-spec-button-shape-next--button-text-content\nwww.youtube.com###actions.ytd-watch-metadata ytd-button-renderer .yt-spec-button-shape-next__icon:style(margin-right: -6px !important; margin-left: -6px !important;)\n\n! hide upcoming videos\nwww.youtube.com##ytd-browse ytd-grid-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style=\"UPCOMING\"])\nwww.youtube.com##ytd-browse ytd-rich-item-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style=\"UPCOMING\"])\nwww.youtube.com##ytd-browse[page-subtype=\"subscriptions\"] ytd-video-renderer ytd-thumbnail-overlay-time-status-renderer[overlay-style=\"UPCOMING\"]:upward(ytd-item-section-renderer)\n\n! hide the hashtags above the video title \nwww.youtube.com###description #info a[href^=\"/hashtag/\"]\nwww.youtube.com###super-title\nwww.youtube.com##.super-title\n\n! hide the copyright notice in the video description \nwww.youtube.com###description .ytd-watch-metadata #items:has(.ytd-video-description-music-section-renderer)\n\n! hide verified checkmark\nwww.youtube.com##.ytd-badge-supported-renderer.style-scope.badge-style-type-verified.badge\nwww.youtube.com##.ytd-comment-renderer #author-text:remove-attr(hidden)\nwww.youtube.com##.ytd-comment-renderer #author-comment-badge\n\n! hide mixes and radios\nwww.youtube.com##ytd-browse ytd-rich-item-renderer:has(#video-title-link[href*=\"&start_radio=1\"])\nwww.youtube.com##ytd-search ytd-radio-renderer\nwww.youtube.com##ytd-watch-next-secondary-results-renderer ytd-compact-radio-renderer\nwww.youtube.com##ytd-player div.videowall-endscreen a[data-is-list=true]\n\n! hide \"smartimation\" animations\n! i.e the rainbow-colored border animation around the subscribe button\nwww.youtube.com##yt-smartimation > *:not(.smartimation__content)\n\n! hide brand image in the corner (attribution)\nyoutube.com##.ytp-button.branding-img-container\n\n! hide badges under video recommendations on the sidebar\nwww.youtube.com##ytd-video-meta-block + ytd-badge-supported-renderer\n\n! hide the chat window when viewing streams\nwww.youtube.com###chat:remove()\n\n! hide \"Shorts remixing this video\" shelf in the description\nwww.youtube.com##ytd-reel-shelf-renderer\n\n! don't enter/exit fullscreen mode on double-click\nwww.youtube.com##+js(aeld, dblclick)\n\n! hide \"View products\"\nwww.youtube.com##.ytp-suggested-action-badge-expanded\n\n! hide \"Includes paid promotion\"\nwww.youtube.com##.ytp-paid-content-overlay\n\n! hide horizontal scrollbar\nwww.youtube.com##ytd-app:style(--ytd-app-fullerscreen-scrollbar-width: -1px !important;)\n\n! Prevent stats from live-updating\n||youtube.com/youtubei/v1/updated_metadata\n\n! hide Video Overlay - annotations/endscreen\n||www.youtube.com/s/player/*/player_ias.vflset/*/annotations_module.js$script\n||www.youtube.com/s/player/*/player_ias.vflset/*/endscreen.js^$script\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n!!!                                                                                              !!!\n!!!                                        Miscellaneous                                         !!!\n!!!                                                                                              !!!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+}

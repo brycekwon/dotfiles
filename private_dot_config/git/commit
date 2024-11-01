@@ -1,0 +1,35 @@
+
+
+# <type>[optional scope]: <description>
+#
+# [optional body]
+#
+# [optional footer(s)]
+#
+#
+# THINGS TO THINK ABOUT
+#  - why have I made these changes?
+#  - what effect have my changes made?
+#  - why was the change needed?
+#  - what are the changes in reference to?
+#
+# TYPES
+#  - feat
+#  - fix
+#  - chore
+#  - refactor
+#  - docs
+#  - style
+#  - test
+#  - perf
+#  - ci
+#  - build
+#  - revert
+#
+# FOOTERS
+#  - Signed-off-by:    [NAME] <EMAIL>
+#  - Co-authored-by:   [NAME] <EMAIL>
+#  - Reviewed-by:      [NAME] <EMAIL>
+#  - Fixes:    #[ID]
+#  - Closes:   #[ID]
+#  - Refs

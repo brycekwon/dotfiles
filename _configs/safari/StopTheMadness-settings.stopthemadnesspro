@@ -1,0 +1,31 @@
+{
+  "settings" : {
+    "2" : {
+      "isPreset" : true,
+      "options" : {
+        "autocomplete" : true,
+        "banners" : true,
+        "click" : true,
+        "clipboard" : true,
+        "contextAlt" : true,
+        "contextMenu" : true,
+        "hidePageElement" : true,
+        "maxLength" : true,
+        "overflow" : true,
+        "override" : true,
+        "privateWindows" : true,
+        "select" : true,
+        "submit" : true,
+        "toggleVideoControls" : false,
+        "visibility" : true
+      },
+      "preset" : "0",
+      "title" : ""
+    }
+  },
+  "stopTheMadnessProExportClient" : "Mac Safari",
+  "stopTheMadnessProExportVersion" : "64",
+  "trackers" : [
+
+  ]
+}
