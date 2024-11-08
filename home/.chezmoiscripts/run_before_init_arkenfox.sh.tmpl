@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+
+##### Define Global Variables #####
+
+CHEZMOI_ROOT="$XDG_DATA_HOME/chezmoi/home"
+TEMPLATE_DIR="$CHEZMOI_ROOT/.chezmoitemplates/firefox"
+
+PREFSUPDATER_FILE="$TEMPLATE_DIR/updater.sh"
+PREFSCLEANER_FILE="$TEMPLATE_DIR/prefsCleaner.sh"
+
+PREFSUPDATER_LINK='https://raw.githubusercontent.com/arkenfox/user.js/master/updater.sh'
+PREFSCLEANER_LINK='https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.sh'
+
+DOWNLOAD_METHOD=''
+if command -v curl >/dev/null; then
+    DOWNLOAD_METHOD='curl --max-redirs 3 -o'
+elif command -v wget >/dev/null; then
+    DOWNLOAD_METHOD='wget --max-redirects 3 -O'
+else
+    echo -e "${RED}This script requires curl or wget.\nProcess aborted${NC}"
+    exit 1
+fi
+
+
+##### Define Helper Functions #####
+
+# return path to downloaded file or empty string on error
+__download_file() {
+    declare -r tf=$(mktemp)
+    $DOWNLOAD_METHOD "${tf}" "$1" && echo "$tf" || echo ''
+}
+
+
+##### Define Primary Functions #####
+
+fetch_updater() {
+    declare -r tmpfile="$(__download_file $PREFSUPDATER_LINK)"
+    [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download updater.sh${NC}" && return 1
+
+    mv "${tmpfile}" "$PREFSUPDATER_FILE"
+    chmod u+x "$PREFSUPDATER_FILE"
+    "$PREFSUPDATER_FILE" "$@" -d
+
+    exit 0
+}
+
+fetch_cleaner() {
+    declare -r tmpfile="$(__download_file $PREFSCLEANER_LINK)"
+    [ -z "${tmpfile}" ] && echo -e "${RED}Error! Could not download prefsCleaner.sh${NC}" && return 1
+
+    mv "${tmpfile}" "$PREFSCLEANER_FILE"
+    chmod u+x "$PREFSCLEANER_FILE"
+    "$PREFSCLEANER_FILE" "-s"
+}
+
+update_userjs() {
+    if [ ! -f "$1"/user.js ]; then
+        printf "user.js not found, retrieving new one\n"
+
+        "$PREFSUPDATER_FILE" "-b" "-d" "-s" \
+        -o "$1"/user-overrides.js \
+        -p "$1"
+    else
+        printf "$2/user.js found, reusing\n"
+    fi
+}
+
+verify_userjs_age() {
+    if [ ! -f "$PREFSUPDATER_FILE" ]; then
+        printf "updater.sh not found, retrieving new one\n"
+        fetch_updater "$@"
+    elif [ "$(find "$PREFSUPDATER_FILE" -mtime +120)" ]; then
+        printf "updater.sh exists and is older than 120 days, retrieving new one\n"
+        rm "$PREFSUPDATER_FILE"
+        fetch_updater "$@"
+    fi
+
+
+    if [ ! -f "$PREFSCLEANER_FILE" ]; then
+        printf "cleaner.sh not found, retrieving new one\n"
+        fetch_cleaner "$@"
+    elif [ "$(find "$PREFSCLEANER_FILE" -mtime +120)" ]; then
+        printf "cleaner.sh exists and is older than 120 days, retrieving new one\n"
+        rm "$PREFSCLEANER_FILE"
+        fetch_cleaner "$@"
+    fi
+}
+
+update_profiles() {
+    declare -a profiles=(default)
+
+    for i in "${!profiles[@]}"; do
+        update_userjs "$TEMPLATE_DIR/${profiles[$i]}" "${profiles[$i]}"
+    done
+}
+
+
+##### Run Functions ######
+
+verify_userjs_age
+update_profiles

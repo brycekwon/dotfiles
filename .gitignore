@@ -56,3 +56,9 @@ luac.out
 # Zunit tests' output
 /tests/_output/*
 !/tests/_output/.gitkeep
+
+home/.chezmoitemplates/firefox/user.js
+home/.chezmoitemplates/firefox/updater.sh
+home/.chezmoitemplates/firefox/prefsCleaner.sh
+home/.chezmoitemplates/firefox/default/user.js
+home/.chezmoitemplates/firefox/default/userjs_backups

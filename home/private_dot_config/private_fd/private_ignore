@@ -1,0 +1,15 @@
+/.cache/
+/.local/
+/Applications/
+/Library/
+/Movies/
+/Music/
+/Pictures/
+/Public/
+/.Trash/
+
+node_modules/
+venv/
+.git/
+
+.DS_Store

@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+
+BREW_BIN="/opt/homebrew/bin/brew"
+BREWFILE="$HOME/.local/share/chezmoi/packages/Brewfile"
+
+if [ ! -x "$BREW_BIN" ]; then
+    echo "Homebrew is not installed. Installing Homebrew..."
+
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    if [ ! -x "$BREW_BIN" ]; then
+        echo "Homebrew installation failed."
+        exit 1
+    fi
+    echo "Homebrew installed successfully."
+
+    if [[ "$SHELL" == *"zsh"* || "$SHELL" == *"bash"* ]]; then
+        export PATH="/opt/homebrew/bin:$PATH"
+    fi
+fi
+
+which brew > /dev/null
+if [ $? -ne 0 ]; then
+    echo "Homebrew command not found in PATH."
+    exit 1
+fi
+
+if [ ! -f "$BREWFILE" ]; then
+    echo "Brewfile not found at $BREWFILE. Exiting..."
+    exit 1
+fi
+
+echo "Running brew bundle from $BREWFILE..."
+brew bundle --file="$BREWFILE" --no-lock
+
+if [ $? -eq 0 ]; then
+    echo "Brewfile installation complete."
+else
+    echo "Failed to install from Brewfile."
+    exit 1
+fi
