@@ -207,11 +207,10 @@ function ide() {
 function _store_cache() {}
 
 ##################################################
-# GPG and SSH                                    #
+# GPG                                            #
 ##################################################
 
 export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK="~/Library/Group Containers/group.strongbox.mac.mcguill/agent.sock"
 
 ##################################################
 # FZF                                            #
@@ -269,7 +268,7 @@ export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/python/micromamba";
 if [ $? -eq 0 ]; then
     eval "$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+    alias micromamba="$MAMBA_EXE"
 fi
 alias mamba="micromamba"
 

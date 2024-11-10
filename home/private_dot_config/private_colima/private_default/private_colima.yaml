@@ -119,7 +119,7 @@ docker: {}
 #
 # NOTE: value cannot be changed after virtual machine is created.
 # Default: qemu
-vmType: qemu
+vmType: vz
 
 # Utilise rosetta for amd64 emulation (requires m1 mac and vmType `vz`)
 # Default: false

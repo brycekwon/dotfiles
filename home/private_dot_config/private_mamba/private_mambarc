@@ -1,3 +1,28 @@
 channels:
   - conda-forge
+
 always_yes: false
+
+change_ps1: true
+
+add_pip_as_python_dependency: true
+
+use_pip: true
+
+channels:
+  - conda-forge
+  - defaults
+
+envs_dirs:
+  - ~/.local/share/python/micromamba/envs
+
+pkgs_dirs:
+  - ~/.local/share/python/micromamba/pkgs
+
+auto_activate_base: false
+
+ssl_verify: true
+
+show_channel_urls: true
+always_yes: true
+safety_checks: warn

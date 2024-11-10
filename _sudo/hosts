@@ -6,12 +6,11 @@
 255.255.255.255	broadcasthost
 ::1             localhost
 
-# this is here because for some reason my university uses a private IP to route in-network
-# devices to their website and associated services, so I can't just use their standard public IP.
+# this is here because my university uses a private IP to route in-network devices to
+# some of their services
 10.10.1.53 www.up.edu
-104.18.11.207 pilots.up.edu
+10.10.1.11 pilots.up.edu
 10.10.1.253 degreeworks.up.edu
-
 
 ##
 # Apple Telemetry (HaGeZi's Apple Tracker DNS Blocklist)
