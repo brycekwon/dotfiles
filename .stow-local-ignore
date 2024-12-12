@@ -1,8 +1,10 @@
 RCS
 .+,v
 
-.stow-local-ignore
 .stowrc
+.stow-local-ignore
+stow-scripts
+stow-templates
 
 CVS
 \.\#.+
@@ -24,3 +26,6 @@ _darcs
 ^/LICENSE.*
 
 .DS_Store
+applications
+Brewfile
+hosts
