@@ -1,0 +1,4 @@
+--target=~/
+--verbose
+--no-folding
+--dotfiles
