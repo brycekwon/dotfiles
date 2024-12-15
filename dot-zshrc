@@ -34,8 +34,6 @@ fpath+=("$HOMEBREW_PREFIX/share/zsh/site-functions")
 # PATH                                           #
 ##################################################
 
-
-
 PATH="$XDG_BIN_HOME"
 PATH="$HOMEBREW_PREFIX/sbin:$PATH"
 PATH="$HOMEBREW_PREFIX/bin:$PATH"
