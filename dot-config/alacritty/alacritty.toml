@@ -7,7 +7,6 @@
     padding.y = 5
     decorations = "Full"
     dynamic_title = false
-    opacity = 0.8
     blur = true
     option_as_alt = "Both"
 [font]

@@ -99,31 +99,30 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 ################################################################################
 
 ##################################################
-# Zit Plugin Manager                             #
+# Zap Plugin Manager                             #
 ##################################################
 
-# ensure the zit plugin manager is installed
-export ZIT_HOME="$XDG_DATA_HOME/zsh/plugins"
-if [[ ! -r "$ZIT_HOME/zit/zit.zsh" ]]; then
-    git clone --depth 1 -- "https://github.com/brycekwon/zit.git" "$ZIT_HOME/zit"
+export ZAP_HOME="$XDG_DATA_HOME/zsh/plugins"
+if [[ ! -r "$ZAP_HOME/zap/zap.zsh" ]]; then
+    git clone "https://github.com/brycekwon/zap.git" "$ZAP_HOME/zap"
 fi
-source "$ZIT_HOME/zit/zit.zsh"
+source "$ZAP_HOME/zap/zap.zsh"
 
-zit-install "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
-zit-load "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
+zap install "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+zap load "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
 
-zit-install "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
-zit-load "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
+zap install "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
+zap load "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
 
-zit-install "pure" "https://github.com/sindresorhus/pure"
-zit-load "pure" "async.zsh"
-zit-load "pure" "pure.zsh"
+zap install "pure" "https://github.com/sindresorhus/pure"
+zap load "pure" "async.zsh"
+zap load "pure" "pure.zsh"
 
 ##################################################
 # Zsh Pure Theme                                 #
 ##################################################
 
-fpath+=("$ZIT_HOME/pure")
+fpath+=("$ZAP_HOME/pure")
 autoload -U promptinit; promptinit
 
 PURE_GIT_PULL=0
@@ -185,7 +184,6 @@ function compress() {
     fi
 }
 
-
 # colored man pages
 # credit: https://github.com/ael-code/zsh-colored-man-pages
 function man() {
@@ -199,12 +197,6 @@ function man() {
         LESS_TERMCAP_se=$(tput rmso) \
         PAGER="${commands[less]:-$PAGER}" \
         command man "$@"
-}
-
-# custom ide setup
-function ide() {
-    tmux split-window -v -l 30%
-    tmux select-pane -t 0
 }
 
 function _store_cache() {}
@@ -270,10 +262,7 @@ export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/micromamba';
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/python/micromamba";
 if [ $? -eq 0 ]; then
     eval "$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-else
-    alias micromamba="$MAMBA_EXE"
 fi
-alias mamba="micromamba"
 
 export JUPYTER_CONFIG_DIR="$XDG_DATA_HOME/python/jupyter"
 export IPYTHONDIR="$JUPYTER_CONFIG_DIR/ipython"
@@ -351,7 +340,7 @@ alias cl="clear"
 alias ee="exit"
 
 alias coffee="caffeinate -disu"
-alias update="brew update; brew upgrade; zit-upgrade"
+alias update="brew update; brew upgrade; zap update"
 
 ##################################################
 # Informational                                  #
