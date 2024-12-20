@@ -34,16 +34,15 @@ fpath+=("$HOMEBREW_PREFIX/share/zsh/site-functions")
 # PATH                                           #
 ##################################################
 
-PATH="$XDG_BIN_HOME"
-PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-PATH="$HOMEBREW_PREFIX/bin:$PATH"
-PATH="/usr/sbin:$PATH"
-PATH="/usr/bin:$PATH"
-PATH="/sbin:$PATH"
-PATH="/bin:$PATH"
-export PATH
 
-export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
+PATH="/bin"
+PATH="/sbin:$PATH"
+PATH="/usr/bin:$PATH"
+PATH="/usr/sbin:$PATH"
+PATH="$HOMEBREW_PREFIX/bin:$PATH"
+PATH="$HOMEBREW_PREFIX/sbin:$PATH"
+PATH="$XDG_BIN_HOME:$PATH"
+export PATH
 
 
 ################################################################################
@@ -258,11 +257,8 @@ export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 # Python                                         #
 ##################################################
 
-export MAMBA_EXE='/opt/homebrew/opt/micromamba/bin/micromamba';
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/python/micromamba";
-if [ $? -eq 0 ]; then
-    eval "$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-fi
+eval "$(mamba shell hook --shell zsh)"
 
 export JUPYTER_CONFIG_DIR="$XDG_DATA_HOME/python/jupyter"
 export IPYTHONDIR="$JUPYTER_CONFIG_DIR/ipython"
@@ -273,7 +269,6 @@ export MPLCONFIGDIR="$JUPYTER_CONFIG_DIR/matplotlib"
 ##################################################
 
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
-
 eval "$(fnm env --shell zsh --fnm-dir $XDG_DATA_HOME/node)"
 
 ##################################################
@@ -281,12 +276,6 @@ eval "$(fnm env --shell zsh --fnm-dir $XDG_DATA_HOME/node)"
 ##################################################
 
 export GOPATH="$XDG_DATA_HOME/go"
-
-##################################################
-# PosgreSQL                                      #
-##################################################
-
-export PSQL_HISTORY="$XDG_DATA_HOME/postgres/history"
 
 
 ################################################################################
@@ -351,8 +340,6 @@ alias apps="brew list -1 --casks"
 
 alias now="date +'%Y-%m-%d %H:%M:%S'"
 alias timestamp="date +%s"
-
-alias ff="fastfetch"
 
 alias path="echo $PATH | tr ':' '\n'"
 

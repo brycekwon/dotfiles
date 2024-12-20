@@ -7,13 +7,6 @@
 ::1             localhost
 
 ##
-# university-specific internal network
-##
-10.10.1.53 www.up.edu
-10.10.1.11 pilots.up.edu
-10.10.1.253 degreeworks.up.edu
-
-##
 # Apple Telemetry (HaGeZi's Apple Tracker DNS Blocklist)
 # Homepage: https://github.com/hagezi/dns-blocklists
 # License: https://github.com/hagezi/dns-blocklists/blob/main/LICENSE
