@@ -68,3 +68,25 @@ user_pref("mousewheel.min_line_scroll_amount", 10);
 user_pref("general.smoothScroll.mouseWheel.durationMinMS", 80);
 user_pref("general.smoothScroll.currentVelocityWeighting", "0.15");
 user_pref("general.smoothScroll.stopDecelerationWeighting", "0.6");
+
+/* remove promotions */
+user_pref("browser.privatebrowsing.vpnpromourl", "");
+user_pref("browser.preferences.moreFromMozilla", false);
+
+/* disable welcome page */
+user_pref("browser.aboutwelcome.enabled", false);
+
+/* disable check default browser */
+user_pref("browser.shell.checkDefaultBrowser", false);
+
+/* enable profiles */
+user_pref("browser.profiles.enabled", true);
+
+/* add compact mode option */
+user_pref("browser.compactmode.show", true);
+
+/* minimize URL bar suggestions */
+user_pref("browser.urlbar.suggest.engines", false);
+user_pref("browser.urlbar.suggest.calculator", true);
+user_pref("browser.urlbar.unitConversion.enabled", true);
+

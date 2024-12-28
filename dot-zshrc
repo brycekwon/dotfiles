@@ -351,6 +351,8 @@ alias path="echo $PATH | tr ':' '\n'"
 # start up tmux session by default
 if [ -z "$TMUX" ] && [ -n "$ALACRITTY_WINDOW_ID" ]; then
     tmux -2 new-session -A -s home
+elif [ "$TERM" = "xterm-ghostty" ]; then
+    tmux -2 new-session -A -s home
 elif [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
     command rm -rf "$HOME/.zsh_sessions"
 fi

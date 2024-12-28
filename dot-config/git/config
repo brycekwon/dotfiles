@@ -1,6 +1,6 @@
 [user]
     name = "Bryce Kwon"
-    email = "signer@brycekwon.com"
+    email = "me@brycekwon.com"
     signingkey = "0xB6F50FFE83AFC0EA"
 [core]
     trustctime = false
