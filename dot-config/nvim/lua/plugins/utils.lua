@@ -13,12 +13,12 @@ return {
         },
     },
 
-    {
-        'folke/which-key.nvim',
-        name = 'which-key',
-        opts = {},
-        event = "VeryLazy",
-    },
+    -- {
+    --     'folke/which-key.nvim',
+    --     name = 'which-key',
+    --     opts = {},
+    --     event = "VeryLazy",
+    -- },
 
     {
         'windwp/nvim-autopairs',

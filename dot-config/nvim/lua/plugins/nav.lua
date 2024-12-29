@@ -65,14 +65,14 @@ return {
         opts = {
             defaults = {
                 file_ignore_patterns = {
-                    '%.png', '%.jpg', '%.jpeg', '%.webp', '%.gif', '%.icns', '%.pdf', '%.odt',
                     '%.docx', '%.ods', '%.xlsx', '%.pptx', '%.kdbx', '%.pcapng', '%.gpg',
-                    '%.kbx', '%.bin', '%_%_pycache%_%_/*', '%.ipynb%_checkpoints/*'
+                    '%.kbx', '%.bin', '%_%_pycache%_%_/*', '%.ipynb%_checkpoints/*', '%.log',
+                    '%.png', '%.jpg', '%.jpeg', '%.webp', '%.gif', '%.icns', '%.pdf', '%.odt',
                 },
             },
             pickers = {
                 find_files = {
-                    find_command = { 'fd', '--hidden', '--type', 'file' },
+                    find_command = { 'fd', '--hidden', '--type', 'file', '--type', 'symlink' },
                 },
             },
             extensions = {

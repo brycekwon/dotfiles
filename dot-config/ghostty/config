@@ -1,9 +1,12 @@
 theme = catppuccin-mocha
 
 font-family = "UbuntuMono Nerd Font Mono"
-font-size = 18
+font-size = 20
 
-window-width = 175
-window-height = 50
+window-width = 155
+window-height = 45
 
-shell-integration = none
+shell-integration = zsh
+
+window-padding-x = 5
+window-padding-y = 0

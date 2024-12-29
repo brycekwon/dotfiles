@@ -13,7 +13,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_BIN_HOME="$HOME/.local/bin"
 
 ##################################################
 # Homebrew Package Manager                       #
@@ -41,7 +40,6 @@ PATH="/usr/bin:$PATH"
 PATH="/usr/sbin:$PATH"
 PATH="$HOMEBREW_PREFIX/bin:$PATH"
 PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-PATH="$XDG_BIN_HOME:$PATH"
 export PATH
 
 
@@ -222,11 +220,11 @@ source "$(brew --prefix fzf)/shell/completion.zsh"
 
 
 _fzf_compgen_path() {
-    fd --type d --hidden --follow --exclude .DS_Store . "$1"
+    fd --type d --hidden --follow . "$1"
 }
 
 _fzf_compgen_dir() {
-    fd --type d --hidden --follow --exclude .DS_Store . "$1"
+    fd --type d --hidden --follow . "$1"
 }
 
 _fzf_comprun() {
@@ -250,6 +248,7 @@ _fzf_comprun() {
 # Git                                            #
 ##################################################
 
+# global configuration settings
 export GIT_CONFIG_NOSYSTEM=true
 export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 
@@ -257,9 +256,11 @@ export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 # Python                                         #
 ##################################################
 
+# micromamba version/package manager
 export MAMBA_ROOT_PREFIX="$XDG_DATA_HOME/python/micromamba";
 eval "$(mamba shell hook --shell zsh)"
 
+# jupyter notebook settings
 export JUPYTER_CONFIG_DIR="$XDG_DATA_HOME/python/jupyter"
 export IPYTHONDIR="$JUPYTER_CONFIG_DIR/ipython"
 export MPLCONFIGDIR="$JUPYTER_CONFIG_DIR/matplotlib"
@@ -268,8 +269,11 @@ export MPLCONFIGDIR="$JUPYTER_CONFIG_DIR/matplotlib"
 # Node                                           #
 ##################################################
 
-export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+# fnm version manager
 eval "$(fnm env --shell zsh --fnm-dir $XDG_DATA_HOME/node)"
+
+# location to store NPM caches
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 
 ##################################################
 # Go                                             #
@@ -349,13 +353,11 @@ alias path="echo $PATH | tr ':' '\n'"
 ################################################################################
 
 # start up tmux session by default
-if [ -z "$TMUX" ] && [ -n "$ALACRITTY_WINDOW_ID" ]; then
-    tmux -2 new-session -A -s home
-elif [ "$TERM" = "xterm-ghostty" ]; then
+if [ "$TERM" = "xterm-ghostty" ]; then
     tmux -2 new-session -A -s home
 elif [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
     command rm -rf "$HOME/.zsh_sessions"
 fi
 
-# clear any remaining output
-clear
+# clear any remaining output (if no errors)
+trap '[[ $? -eq 0 ]] && clear' EXIT
