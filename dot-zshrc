@@ -1,5 +1,5 @@
 ################################################################################
-# GENERAL SETTINGS                                                             #
+# ENVIRONMENT SETTINGS                                                         #
 ################################################################################
 
 # if not running interactively, do nothing and exit
@@ -26,13 +26,11 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 
-# shell completions for installed programs
 fpath+=("$HOMEBREW_PREFIX/share/zsh/site-functions")
 
 ##################################################
 # PATH                                           #
 ##################################################
-
 
 PATH="/bin"
 PATH="/sbin:$PATH"
@@ -55,8 +53,8 @@ bindkey -v
 
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
-bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-search-backward
 
 ##################################################
 # Zsh History                                    #
@@ -81,6 +79,7 @@ setopt hist_find_no_dups
 if [[ ! -d "$XDG_CACHE_HOME/zsh" ]]; then
     mkdir -p "$XDG_CACHE_HOME/zsh"
 fi
+
 autoload -Uz compinit; compinit -i -C -d "$XDG_CACHE_HOME/zsh/zcompcache"
 
 eval $(gdircolors)
@@ -130,11 +129,11 @@ prompt pure
 
 
 ################################################################################
-# GENERAL TOOLS                                                                #
+# DEVELOPMENT TOOLS                                                            #
 ################################################################################
 
 ##################################################
-# Default Tools                                  #
+# Pagers and Editors                             #
 ##################################################
 
 export PAGER="less"
@@ -143,66 +142,18 @@ export EDITOR="nvim"
 export LESS="-RF"
 export LESSHISTFILE="/dev/null"
 
-# more versatile open command
-function open() {
-    if [ $# -eq 0 ]; then
-        command open "./"
-    else
-        command open "$@"
-    fi
-}
-
-# create a new directory and enter it
-function mkd() {
-    mkdir -p "$@" && pushd "$@" > /dev/null
-}
-
-function compress() {
-    if [ -z "$1" ]; then
-        echo "Usage: compress <file_or_folder>"
-        return 1
-    fi
-
-    input="$1"
-    if [ ! -e "$input" ]; then
-        echo "Error: '$input' does not exist."
-        return 1
-    fi
-
-    if [ -d "$input" ]; then
-        tar -cf - "$input" | xz -9 --verbose > "$input.tar.xz"
-        echo "Compression complete: $input.tar.xz"
-    elif [ -f "$input" ]; then
-        xz -9 --verbose "$input"
-        echo "Compression complete: $input.xz"
-    else
-        echo "Error: '$input' is not a regular file or directory."
-        return 1
-    fi
-}
-
-# colored man pages
-# credit: https://github.com/ael-code/zsh-colored-man-pages
-function man() {
-    env \
-        LESS_TERMCAP_md=$(tput bold; tput setaf 4) \
-        LESS_TERMCAP_me=$(tput sgr0) \
-        LESS_TERMCAP_mb=$(tput blink) \
-        LESS_TERMCAP_us=$(tput setaf 2) \
-        LESS_TERMCAP_ue=$(tput sgr0) \
-        LESS_TERMCAP_so=$(tput smso) \
-        LESS_TERMCAP_se=$(tput rmso) \
-        PAGER="${commands[less]:-$PAGER}" \
-        command man "$@"
-}
-
-function _store_cache() {}
-
 ##################################################
-# GPG                                            #
+# SSH/GPG                                        #
 ##################################################
 
 export GPG_TTY=$(tty)
+
+##################################################
+# Git                                            #
+##################################################
+
+export GIT_CONFIG_NOSYSTEM=true
+export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 
 ##################################################
 # FZF                                            #
@@ -241,16 +192,8 @@ _fzf_comprun() {
 
 
 ################################################################################
-# DEVELOPER TOOLS                                                              #
+# DEVELOPMENT ENVIRONMENT                                                      #
 ################################################################################
-
-##################################################
-# Git                                            #
-##################################################
-
-# global configuration settings
-export GIT_CONFIG_NOSYSTEM=true
-export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 
 ##################################################
 # Python                                         #
@@ -283,8 +226,65 @@ export GOPATH="$XDG_DATA_HOME/go"
 
 
 ################################################################################
-# ALIASES                                                                      #
+# FUNCTIONS & ALIASES                                                          #
 ################################################################################
+
+# more versatile open command
+function open() {
+    if [ $# -eq 0 ]; then
+        command open "./"
+    else
+        command open "$@"
+    fi
+}
+
+# create a new directory and enter it
+function mkd() {
+    mkdir -p "$@" && pushd "$@" > /dev/null
+}
+
+# colored man pages
+# credit: https://github.com/ael-code/zsh-colored-man-pages
+function man() {
+    env \
+        LESS_TERMCAP_md=$(tput bold; tput setaf 4) \
+        LESS_TERMCAP_me=$(tput sgr0) \
+        LESS_TERMCAP_mb=$(tput blink) \
+        LESS_TERMCAP_us=$(tput setaf 2) \
+        LESS_TERMCAP_ue=$(tput sgr0) \
+        LESS_TERMCAP_so=$(tput smso) \
+        LESS_TERMCAP_se=$(tput rmso) \
+        PAGER="${commands[less]:-$PAGER}" \
+        command man "$@"
+}
+
+# function compress() {
+#     if [ -z "$1" ]; then
+#         echo "Usage: compress <file_or_folder>"
+#         return 1
+#     fi
+#
+#     input="$1"
+#     if [ ! -e "$input" ]; then
+#         echo "Error: '$input' does not exist."
+#         return 1
+#     fi
+#
+#     if [ -d "$input" ]; then
+#         tar -cf - "$input" | xz -9 --verbose > "$input.tar.xz"
+#         echo "Compression complete: $input.tar.xz"
+#     elif [ -f "$input" ]; then
+#         xz -9 --verbose "$input"
+#         echo "Compression complete: $input.xz"
+#     else
+#         echo "Error: '$input' is not a regular file or directory."
+#         return 1
+#     fi
+# }
+
+# disable: homebrew autocomplete causing issue
+function _store_cache() {}
+
 
 ##################################################
 # Navigation                                     #
@@ -298,6 +298,7 @@ alias -- ....="cd ../../.."
 ls_common_flags="--ignore '.DS_Store' --color -AL --group-directories-first"
 alias ls="gls $ls_common_flags"
 alias ll="gls $ls_common_flags -lGgh --time-style=long-iso"
+
 alias tree="tree --dirsfirst"
 
 alias dev="cd $HOME/Developer"
@@ -311,14 +312,14 @@ alias dow="cd $HOME/Downloads"
 
 alias md="mkdir -p"
 alias rd="rmdir"
-
 alias rm="rm -I"
 
 alias oo="open"
-alias of="fzf --bind 'enter:become(open {})'"
 alias nv="nvim"
+alias co="code"
+
+alias of="fzf --bind 'enter:become(open {})'"
 alias nf="fzf --bind 'enter:become(nvim {})'"
-alias co="code ."
 alias cf="fzf --bind 'enter:become(code {})'"
 
 ##################################################
@@ -334,6 +335,7 @@ alias ee="exit"
 
 alias coffee="caffeinate -disu"
 alias update="brew update; brew upgrade; zap update"
+alias cleanup="brew cleanup -s --prune=all"
 
 ##################################################
 # Informational                                  #
@@ -352,7 +354,7 @@ alias path="echo $PATH | tr ':' '\n'"
 # CLEANUP                                                                      #
 ################################################################################
 
-# start up tmux session by default
+# start up tmux session by default (on `ghostty` terminal)
 if [ "$TERM" = "xterm-ghostty" ]; then
     tmux -2 new-session -A -s home
 elif [ "$TERM_PROGRAM" = "Apple_Terminal" ]; then
