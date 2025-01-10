@@ -1,7 +1,8 @@
 theme = catppuccin-mocha
 
-font-family = "UbuntuMono Nerd Font Mono"
-font-size = 20
+font-family = "GeistMono Nerd Font"
+font-size = 16
+font-feature = -liga
 
 window-width = 155
 window-height = 45
