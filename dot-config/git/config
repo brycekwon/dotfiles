@@ -10,8 +10,6 @@
     excludesfile = "~/.config/git/ignore"
 [init]
     defaultbranch = "main"
-[branch]
-    sort = -committerdate
 [commit]
     template = "~/.config/git/commit"
     gpgsign = true

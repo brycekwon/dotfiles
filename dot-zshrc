@@ -238,6 +238,16 @@ function open() {
     fi
 }
 
+# more versatile open command
+function code() {
+    if [ $# -eq 0 ]; then
+        command code "./"
+    else
+        command code "$@"
+    fi
+}
+
+
 # create a new directory and enter it
 function mkd() {
     mkdir -p "$@" && pushd "$@" > /dev/null
@@ -348,6 +358,16 @@ alias now="date +'%Y-%m-%d %H:%M:%S'"
 alias timestamp="date +%s"
 
 alias path="echo $PATH | tr ':' '\n'"
+
+
+##################################################
+# Development                                    #
+##################################################
+
+alias dp='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
+alias ds='docker stats'
+alias dcu='docker compose up -d --build'
+alias dcd='docker compose down'
 
 
 ################################################################################
