@@ -33,7 +33,7 @@ return {
 
             mason_lsp.setup({
                 ensure_installed = {
-                    'bashls', 'clangd', 'cssls', 'gopls', 'html', 'marksman', 'lua_ls', 'pylsp',
+                    'bashls', 'clangd', 'cssls', 'gopls', 'html', 'marksman', 'lua_ls', 'ruff',
                     'ts_ls',
                 },
             })
