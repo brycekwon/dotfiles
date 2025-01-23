@@ -58,6 +58,8 @@ keymap.set({'n', 'v'}, '<leader>9', '<CMD>tabn9<CR>', { desc='Go to tab #9', nor
 -- substitution shortcut --
 keymap.set({'n', 'v'}, 'S', ':s/', { desc='Substitution', noremap=true, silent=true })
 
+keymap.set({'n', 'v'}, 'ZW', '<CMD>wa<CR>')
+
 -- navigation shortcuts (from @ThePrimeagen) --
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc='Move visual block up', noremap=true, silent=true })
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc='Move visual block down', noremap=true, silent=true })

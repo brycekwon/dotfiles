@@ -310,6 +310,9 @@ alias ls="gls $ls_common_flags"
 alias ll="gls $ls_common_flags -lGgh --time-style=long-iso"
 
 alias tree="tree --dirsfirst"
+alias t1="tree --dirsfirst -L 1"
+alias t2="tree --dirsfirst -L 2"
+alias t3="tree --dirsfirst -L 3"
 
 alias dev="cd $HOME/Developer"
 alias des="cd $HOME/Desktop"
