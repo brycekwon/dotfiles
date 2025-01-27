@@ -80,7 +80,7 @@ if [[ ! -d "$XDG_CACHE_HOME/zsh" ]]; then
     mkdir -p "$XDG_CACHE_HOME/zsh"
 fi
 
-autoload -Uz compinit; compinit -i -C -d "$XDG_CACHE_HOME/zsh/zcompcache"
+autoload -Uz compinit && compinit -i -C -d "$XDG_CACHE_HOME/zsh/zcompcache"
 
 eval $(gdircolors)
 LS_COLORS=":*.md=01;33:$LS_COLORS"
@@ -367,9 +367,10 @@ alias path="echo $PATH | tr ':' '\n'"
 # Development                                    #
 ##################################################
 
+alias docker='podman'
 alias dp='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 alias ds='docker stats'
-alias dcu='docker compose up -d --build'
+alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 
 
