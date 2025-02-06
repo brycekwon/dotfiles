@@ -239,11 +239,11 @@ function open() {
 }
 
 # more versatile open command
-function code() {
+function codium() {
     if [ $# -eq 0 ]; then
-        command code "./"
+        command codium "./"
     else
-        command code "$@"
+        command codium "$@"
     fi
 }
 
@@ -329,7 +329,7 @@ alias rm="rm -I"
 
 alias oo="open"
 alias nv="nvim"
-alias co="code"
+alias co="codium"
 
 alias of="fzf --bind 'enter:become(open {})'"
 alias nf="fzf --bind 'enter:become(nvim {})'"
