@@ -1,12 +1,13 @@
 *           text=auto
 
 
-*.conf      text eol=lf linguist-detectable=true
-*.yaml      text eol=lf linguist-detectable=true
-
 *.lua       text eol=lf
 *.js        text eol=lf
 *.json      text eol=lf
+
+*.conf      text eol=lf linguist-detectable=true
+*.yml       text eol=lf linguist-detectable=true
+*.yaml      text eol=lf linguist-detectable=true
 
 Brewfile    text eol=lf linguist-detectable=false
 dot-zshrc   text eol=lf linguist-language=sh

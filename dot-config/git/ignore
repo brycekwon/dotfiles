@@ -28,6 +28,3 @@ Temporary Items
 
 # iCloud generated files
 *.icloud
-
-# JetBrains project configuration files
-.idea/

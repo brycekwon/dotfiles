@@ -16,12 +16,6 @@
 [push]
     default = "simple"
     followTags = true
-[pull]
-    ff = "only"
-[merge]
-    log = true
-[fetch]
-    prune = true
 [rerere]
     enabled = true
 [diff]
