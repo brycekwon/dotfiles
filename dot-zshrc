@@ -367,7 +367,6 @@ alias path="echo $PATH | tr ':' '\n'"
 # Development                                    #
 ##################################################
 
-alias docker='podman'
 alias dp='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}"'
 alias ds='docker stats'
 alias dcu='docker compose up -d'
