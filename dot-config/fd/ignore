@@ -26,6 +26,8 @@ Temporary Items
 
 /.cache/
 /.local/
+/.docker/
+/.vscode-oss/
 /Applications/
 /Desktop/
 /Documents/
