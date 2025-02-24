@@ -38,6 +38,7 @@ PATH="/usr/bin:$PATH"
 PATH="/usr/sbin:$PATH"
 PATH="$HOMEBREW_PREFIX/bin:$PATH"
 PATH="$HOMEBREW_PREFIX/sbin:$PATH"
+PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH
 
 
