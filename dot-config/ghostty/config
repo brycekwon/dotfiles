@@ -11,3 +11,7 @@ shell-integration = zsh
 
 window-padding-x = 5
 window-padding-y = 0
+
+cursor-style = underline
+
+shell-integration-features = no-cursor
