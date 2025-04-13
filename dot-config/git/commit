@@ -1,0 +1,37 @@
+
+
+# <type>[optional scope](!): <description>
+#
+# [optional body]
+#
+# [optional footer(s)]
+#
+#
+# THINGS TO THINK ABOUT
+#  - 50/72 character limit
+#  - why have I made these changes?
+#  - what effect have my changes made?
+#  - why was the change needed?
+#  - what are the changes in reference to?
+#
+# TYPES
+#  - feat: introduces a new feature
+#  - fix: resolves a bug or issue
+#  - revert: reverts a previous commit
+#  - refactor: code restructuring without changing functionality
+#  - style: code style changes without changing functionality
+#  - perf: improves performance without changing functionality
+#  - build: modifications to the build system or dependencies
+#  - ci: continuous integration configurations
+#  - test: test configurations
+#  - docs: documentation updates or additions
+#  - chore: routine tasks without changing functionality
+#
+# FOOTERS
+#  - Signed-off-by:    [NAME] <EMAIL>
+#  - Co-authored-by:   [NAME] <EMAIL>
+#  - Reviewed-by:      [NAME] <EMAIL>
+#  - Fixes:    #[ID]
+#  - Closes:   #[ID]
+#  - See:   #[Hash|URL]
+#  - Ref:   #[Hash]

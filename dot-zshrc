@@ -1,0 +1,371 @@
+# if not running shell interactively, do nothing and exit
+[[ $- != *i* ]] && return
+
+################################################################################
+# GLOBAL SETTINGS                                                              #
+################################################################################
+
+##################################################
+# XDG DIRECTORY SPECIFICATION                    #
+##################################################
+
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+##################################################
+# HOMEBREW PACKAGE MANAGER                       #
+##################################################
+
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+
+export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+
+fpath+=("$HOMEBREW_PREFIX/share/zsh/site-functions")
+
+##################################################
+# MAN PATH                                       #
+##################################################
+
+MANPATH="/usr/share/man"
+MANPATH="/usr/local/share/man:$MANPATH"
+MANPATH="/opt/homebrew/share/man:$MANPATH";
+export MANPATH
+
+##################################################
+# BINARY PATH                                    #
+##################################################
+
+PATH="/bin"
+PATH="/sbin:$PATH"
+PATH="/usr/bin:$PATH"
+PATH="/usr/sbin:$PATH"
+PATH="$HOMEBREW_PREFIX/bin:$PATH"
+PATH="$HOMEBREW_PREFIX/sbin:$PATH"
+# PATH="$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin:$PATH"
+# PATH="$HOMEBREW_PREFIX/opt/uutils-findutils/libexec/uubin:$PATH"
+# PATH="$HOMEBREW_PREFIX/opt/uutils-diffutils/bin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/diffutils/bin:$PATH"
+export PATH
+
+##################################################
+# DEFAULT TOOLS                                  #
+##################################################
+
+export BROWSER="firefox"
+
+export EDITOR="nvim"
+
+export PAGER="less"
+export LESS="-RF"
+export LESSHISTFILE="/dev/null"
+
+##################################################
+# THEME                                          #
+##################################################
+
+# enable LS colors
+eval $(dircolors)
+LS_COLORS=":*.md=01;33:$LS_COLORS"
+
+
+################################################################################
+# ZSH CORE SETTINGS                                                            #
+################################################################################
+
+##################################################
+# ZSH KEYBINDS                                   #
+##################################################
+
+# enable vi-mode
+bindkey -v
+
+# word-jump navigation
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+# cycle through historical commands
+bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-search-backward
+
+##################################################
+# ZSH HISTORY                                    #
+##################################################
+
+# define history location and limit
+HISTFILE="$XDG_DATA_HOME/zsh/history"
+HISTSIZE=1000
+SAVEHIST=1000
+
+# set history options
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+##################################################
+# ZSH COMPLETIONS                                #
+##################################################
+
+# enable zsh cache
+ZSH_CACHE="$XDG_CACHE_HOME/zsh"
+if [[ ! -d "$ZSH_CACHE" ]]; then
+    mkdir -p "$ZSH_CACHE"
+fi
+autoload -Uz compinit && compinit -i -C -d "$ZSH_CACHE/zcompcache"
+
+# enable zsh completions
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select _extensions _complete _approximate
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+
+################################################################################
+# ZSH PLUGIN SETTINGS                                                          #
+################################################################################
+
+##################################################
+# ZAP PLUGIN MANAGER                             #
+##################################################
+
+export ZAP_HOME="$XDG_DATA_HOME/zsh/plugins"
+if [[ ! -r "$ZAP_HOME/zap/zap.zsh" ]]; then
+    git clone "https://github.com/brycekwon/zap.git" "$ZAP_HOME/zap"
+fi
+source "$ZAP_HOME/zap/zap.zsh"
+
+##################################################
+# ZSH SYNTAX HIGHLIGHTING                        #
+##################################################
+
+zap install "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+zap load "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
+
+##################################################
+# ZSH AUTOSUGGESTIONS                            #
+##################################################
+
+zap install "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
+zap load "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
+
+##################################################
+# ZSH PURE THEME                                 #
+##################################################
+
+zap install "pure" "https://github.com/sindresorhus/pure"
+zap load "pure" "async.zsh"
+zap load "pure" "pure.zsh"
+
+fpath+=("$ZAP_HOME/pure")
+
+autoload -U promptinit; promptinit
+
+PURE_GIT_PULL=0
+
+zstyle :prompt:pure:git:stash show yes
+
+prompt pure
+
+
+################################################################################
+# DEVELOPMENT TOOLS                                                            #
+################################################################################
+
+##################################################
+# SSH/GPG                                        #
+##################################################
+
+export GPG_TTY=$(tty)
+
+##################################################
+# GIT                                            #
+##################################################
+
+export GIT_CONFIG_NOSYSTEM=true
+export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
+
+##################################################
+# FZF                                            #
+##################################################
+
+export FZF_COMPLETION_TRIGGER=","
+export FZF_DEFAULT_COMMAND="fd --hidden --follow --strip-cwd-prefix --exclude .DS_Store"
+export FZF_DEFAULT_OPTS="
+--reverse --border --margin=1 --padding=1 --info=inline --height 60% --tmux 80%,60%
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+"
+
+source "$(brew --prefix fzf)/shell/completion.zsh"
+
+_fzf_compgen_path() {
+    fd --type f --hidden --follow . "$1"
+}
+
+_fzf_compgen_dir() {
+    fd --type d --hidden --follow . "$1"
+}
+
+_fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+        cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+        ssh)          fzf --preview 'dig {}'                   "$@" ;;
+        export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+        *)            fzf --preview '[[ -d {} ]] && tree -C {} || cat {}' "$@";;
+    esac
+}
+
+
+##################################################
+# PYTHON                                         #
+##################################################
+
+# pyenv version manager
+export PYENV_ROOT="$XDG_DATA_HOME/python/pyenv"
+eval "$(pyenv init - zsh)"
+
+# jupyter notebook settings
+export JUPYTER_CONFIG_DIR="$XDG_DATA_HOME/python/jupyter"
+export IPYTHONDIR="$XDG_DATA_HOME/python/ipython"
+export MPLCONFIGDIR="$XDG_DATA_HOME/python/matplotlib"
+
+##################################################
+# NODEJS                                         #
+##################################################
+
+# nodenv version manager
+export NODENV_ROOT="$XDG_DATA_HOME/node/nodenv"
+eval "$(nodenv init - zsh)"
+
+# location to store NPM caches
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+
+##################################################
+# GOLANG                                         #
+##################################################
+
+# goenv version manager
+export GOENV_DISABLE_GOROOT=1
+export GOENV_DISABLE_GOPATH=1
+export GOENV_ROOT="$XDG_DATA_HOME/golang/goenv"
+eval "$(goenv init - zsh)"
+
+# location of go packages and modules
+export GOPATH="$XDG_DATA_HOME/golang"
+
+
+################################################################################
+# FUNCTIONS & ALIASES                                                          #
+################################################################################
+
+# slightly more versatile open command
+function open() {
+    if [ "$#" -eq 0 ]; then
+        command open "./"
+    else
+        command open "$@"
+    fi
+}
+
+# slightly more versatile codium command
+function codium() {
+    if [ "$#" -eq 0 ]; then
+        command codium "./"
+    else
+        command codium "$@"
+    fi
+}
+
+# create and enter directory
+function md() {
+    mkdir -p "$@" && pushd "$@" > /dev/null
+}
+
+# colored man pages
+# credit: https://github.com/ael-code/zsh-colored-man-pages
+function man() {
+    env \
+        LESS_TERMCAP_md=$(tput bold; tput setaf 4) \
+        LESS_TERMCAP_me=$(tput sgr0) \
+        LESS_TERMCAP_mb=$(tput blink) \
+        LESS_TERMCAP_us=$(tput setaf 2) \
+        LESS_TERMCAP_ue=$(tput sgr0) \
+        LESS_TERMCAP_so=$(tput smso) \
+        LESS_TERMCAP_se=$(tput rmso) \
+        PAGER="${commands[less]:-$PAGER}" \
+        command man "$@"
+}
+
+# disabled: homebrew autocomplete causing issue
+function _store_cache() {}
+
+##################################################
+# NAVIGATION                                     #
+##################################################
+
+alias -- -="cd -"
+alias -- ..="cd ../"
+alias -- ...="cd ../../"
+alias -- ....="cd ../../../"
+
+alias ls="ls --group-directories-first --ignore '.DS_Store' --color -AL"
+alias ll="ls --group-directories-first --ignore '.DS_Store' --color -AL -lGgh --time-style=long-iso"
+
+alias tree="tree --dirsfirst"
+alias t1="tree --dirsfirst -L 1"
+alias t2="tree --dirsfirst -L 2"
+alias t3="tree --dirsfirst -L 3"
+
+##################################################
+# I/O MANAGEMENT                                 #
+##################################################
+
+alias mk="mkdir -p"
+alias rm="rm -Irf"
+alias cl="clear"
+
+alias oo="open"
+alias of="fzf --bind 'enter:become(open {})'"
+
+alias nv="nvim"
+alias nf="fzf --bind 'enter:become(nvim {})'"
+alias co="codium"
+alias cf="fzf --bind 'enter:become(code {})'"
+
+##################################################
+# SYSTEM MANAGEMENT                              #
+##################################################
+
+alias so="source"
+alias ee="exit"
+
+alias coffee="caffeinate -disu"
+
+alias now="date +'%Y-%m-%d %H:%M:%S'"
+alias timestamp="date +%s"
+
+alias path="echo $PATH | tr ':' '\n'"
+
+##################################################
+# MISCELLANEOUS                                  #
+##################################################
+
+alias pkgs="brew list -1 --installed-on-request"
+alias apps="brew list -1 --casks"
+
+alias th="tmux -2 new-session -A -s home"
+
+clear

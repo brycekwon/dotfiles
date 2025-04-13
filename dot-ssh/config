@@ -1,0 +1,7 @@
+Include /Users/brycekwon/.config/colima/ssh_config
+
+IgnoreUnknown AddKeysToAgent,UseKeychain
+
+Host *
+    IdentityFile "~/.ssh/brycekwon.pub"
+    IdentityAgent "~/Library/Group Containers/group.strongbox.mac.mcguill/agent.sock"

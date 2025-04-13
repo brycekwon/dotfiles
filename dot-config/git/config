@@ -1,0 +1,74 @@
+[user]
+    name = "Bryce Kwon"
+    email = "me@brycekwon.com"
+    signingkey = "0xB6F50FFE83AFC0EA"
+[core]
+    trustctime = false
+    untrackedCache = true
+    precomposeunicode = false
+    whitespace="fix,trailing-space,cr-at-eol"
+    excludesfile = "~/.config/git/ignore"
+	quotePath = false
+	commitGraph = true
+[init]
+    defaultbranch = "main"
+[commit]
+    template = "~/.config/git/commit"
+    gpgsign = true
+[push]
+    default = "simple"
+    followTags = true
+[rerere]
+    enabled = true
+[diff]
+    renames = copies
+[diff "bin"]
+    textconv = hexdump -v -C
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red
+    new = green
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[alias]
+    ai = "add"
+    aa = "add --all"
+    ap = "add -p"
+    ci = "commit -S"
+    rr = "reset"
+    br = "branch --all --verbose"
+    bd = "branch --delete --verbose"
+    co = "switch"
+    cb = "switch -c"
+    sl = "stash list"
+    ss = "stash push"
+    sp = "stash pop"
+    sd = "stash drop"
+    st = "status"
+    vc = "verify-commit --verbose"
+    vt = "verify-tag --verbose"
+    lg = "log --color --graph --pretty=format:'%Cred%h %Cgreen(%ci) %C(bold blue)[%an]%Creset %C(yellow)%s%Creset%d'"
+    gr = "log --color --graph --pretty=format:'%Cred%H%Creset%d%nAuthor: %C(bold blue)%an <%ae> %Cgreen(%ai)%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%n%CresetSigned: %C(bold blue)%GS %C(magenta)%GK%n%n%C(yellow)%s%Creset%n%n%b%n'"
+    up = "remote -v"
+    authors = "!git log --format='%aN <%aE>' | sort -u"
+[receive]
+	advertisePushOptions = true
+	procReceiveRefs = refs/for
+[gc]
+	writeCommitGraph = true
+[fetch]
+	writeCommitGraph = true
+[safe]
+	directory = *
+[uploadpack]
+	allowfilter = true
+	allowAnySHA1InWant = true

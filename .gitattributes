@@ -1,0 +1,8 @@
+*           text=auto
+
+
+*.lua       text eol=lf
+*.js        text eol=lf
+*.json      text eol=lf
+
+*.conf      text eol=lf
