@@ -1,13 +1,9 @@
-# contaierization
-brew "colima"
-brew "docker"
-brew "docker-buildx"
-brew "docker-compose"
-
-# utilities
 brew "coreutils"
-brew "diffutils"
 brew "findutils"
+brew "diffutils"
+# brew uutils-coreutils
+# brew uutils-findutils
+# brew uutils-diffutils
 brew "tree"
 brew "git"
 brew "gnupg"
@@ -16,17 +12,20 @@ brew "fzf"
 brew "ripgrep"
 brew "rsync"
 brew "rclone"
+brew "neovim"
+brew "tmux"
 
-# version managers
+brew "colima"
+brew "docker"
+brew "docker-buildx"
+brew "docker-compose"
+
 brew "goenv"
 brew "pyenv"
 brew "nodenv"
 
-# tools
 brew "ffmpeg"
 brew "imagemagick"
-brew "tmux"
-brew "neovim"
 
 brew "oha"
 brew "xh"

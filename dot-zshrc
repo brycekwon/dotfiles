@@ -343,7 +343,7 @@ alias of="fzf --bind 'enter:become(open {})'"
 alias nv="nvim"
 alias nf="fzf --bind 'enter:become(nvim {})'"
 alias co="codium"
-alias cf="fzf --bind 'enter:become(code {})'"
+alias cf="fzf --bind 'enter:become(codium {})'"
 
 ##################################################
 # SYSTEM MANAGEMENT                              #
