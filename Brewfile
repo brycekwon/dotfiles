@@ -4,6 +4,7 @@ brew "diffutils"
 # brew uutils-coreutils
 # brew uutils-findutils
 # brew uutils-diffutils
+
 brew "tree"
 brew "git"
 brew "gnupg"
@@ -20,7 +21,8 @@ brew "docker"
 brew "docker-buildx"
 brew "docker-compose"
 
-brew "goenv"
+brew "go"
+brew "rust"
 brew "pyenv"
 brew "nodenv"
 
@@ -33,5 +35,6 @@ brew "xh"
 cask "alfred"
 cask "firefox"
 cask "vscodium"
+cask "obsidian"
 
 cask "font-geist-mono-nerd-font"

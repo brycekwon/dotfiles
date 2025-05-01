@@ -257,12 +257,6 @@ export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 # GOLANG                                         #
 ##################################################
 
-# goenv version manager
-export GOENV_DISABLE_GOROOT=1
-export GOENV_DISABLE_GOPATH=1
-export GOENV_ROOT="$XDG_DATA_HOME/golang/goenv"
-eval "$(goenv init - zsh)"
-
 # location of go packages and modules
 export GOPATH="$XDG_DATA_HOME/golang"
 
