@@ -20,7 +20,7 @@ ln -sfn $(pwd)/dot-config/ghostty/* ~/.config/ghostty/
 ln -sfn $(pwd)/dot-config/git/* ~/.config/git/
 ln -sfn $(pwd)/dot-config/nvim/* ~/.config/nvim/
 ln -sfn $(pwd)/dot-config/tmux/* ~/.config/tmux/
+ln -sfn $(pwd)/dot-config/docker/* ~/.config/docker/
 
-ln -sfn $(pwd)/dot-docker/* ~/.docker/
 ln -sfn $(pwd)/dot-gnupg/* ~/.gnupg/
 ln -sfn $(pwd)/dot-ssh/* ~/.ssh/

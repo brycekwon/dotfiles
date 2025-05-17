@@ -230,6 +230,11 @@ _fzf_comprun() {
     esac
 }
 
+##################################################
+# DOCKER                                         #
+##################################################
+
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 
 ##################################################
 # PYTHON                                         #
@@ -282,6 +287,15 @@ function codium() {
         command codium "./"
     else
         command codium "$@"
+    fi
+}
+
+# slightly more versatile code command
+function code() {
+    if [ "$#" -eq 0 ]; then
+        command code "./"
+    else
+        command code "$@"
     fi
 }
 
@@ -338,8 +352,8 @@ alias of="fzf --bind 'enter:become(open {})'"
 
 alias nv="nvim"
 alias nf="fzf --bind 'enter:become(nvim {})'"
-alias co="codium"
-alias cf="fzf --bind 'enter:become(codium {})'"
+alias co="code"
+alias cf="fzf --bind 'enter:become(code {})'"
 
 ##################################################
 # SYSTEM MANAGEMENT                              #
