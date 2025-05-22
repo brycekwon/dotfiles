@@ -1,26 +1,35 @@
 #!/usr/bin/env zsh
 
-printf "Create absolute symbolic links in home directory."
+printf "Setting default macOS global configuration options"
 
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 1
+
+defaults write com.apple.dock autohide-time-modifier -float 0.15
+defaults write com.apple.dock autohide-delay -int 0
+
+printf "Creating absolute symbolic links in home directory"
+
+mkdir -p ~/.config/docker
 mkdir -p ~/.config/fd
 mkdir -p ~/.config/ghostty
 mkdir -p ~/.config/git
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/tmux
 
-mkdir -p ~/.docker
 mkdir -p ~/.gnupg
 mkdir -p ~/.ssh
 
-
 ln -sfn $(pwd)/dot-zshrc ~/.zshrc
 
+ln -sfn $(pwd)/dot-config/docker/* ~/.config/docker/
 ln -sfn $(pwd)/dot-config/fd/* ~/.config/fd/
 ln -sfn $(pwd)/dot-config/ghostty/* ~/.config/ghostty/
 ln -sfn $(pwd)/dot-config/git/* ~/.config/git/
 ln -sfn $(pwd)/dot-config/nvim/* ~/.config/nvim/
 ln -sfn $(pwd)/dot-config/tmux/* ~/.config/tmux/
-ln -sfn $(pwd)/dot-config/docker/* ~/.config/docker/
 
 ln -sfn $(pwd)/dot-gnupg/* ~/.gnupg/
 ln -sfn $(pwd)/dot-ssh/* ~/.ssh/
+
+print "Configuration set, some changes may require a restart"

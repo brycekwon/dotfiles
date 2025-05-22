@@ -26,17 +26,6 @@ export HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 
-fpath+=("$HOMEBREW_PREFIX/share/zsh/site-functions")
-
-##################################################
-# MAN PATH                                       #
-##################################################
-
-MANPATH="/usr/share/man"
-MANPATH="/usr/local/share/man:$MANPATH"
-MANPATH="/opt/homebrew/share/man:$MANPATH";
-export MANPATH
-
 ##################################################
 # BINARY PATH                                    #
 ##################################################
@@ -47,13 +36,28 @@ PATH="/usr/bin:$PATH"
 PATH="/usr/sbin:$PATH"
 PATH="$HOMEBREW_PREFIX/bin:$PATH"
 PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-# PATH="$HOMEBREW_PREFIX/opt/uutils-coreutils/libexec/uubin:$PATH"
-# PATH="$HOMEBREW_PREFIX/opt/uutils-findutils/libexec/uubin:$PATH"
-# PATH="$HOMEBREW_PREFIX/opt/uutils-diffutils/bin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$PATH"
+PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
 PATH="$HOMEBREW_PREFIX/opt/diffutils/bin:$PATH"
 export PATH
+
+##################################################
+# MANUAL PATH                                    #
+##################################################
+
+MANPATH="/usr/share/man"
+MANPATH="/opt/homebrew/share/man:$MANPATH"
+export MANPATH
+
+##################################################
+# FUNCTION PATH                                  #
+##################################################
+
+fpath=("/usr/share/zsh/5.9/functions")
+fpath=("/usr/share/zsh/site-functions" $fpath)
+fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
 
 ##################################################
 # DEFAULT TOOLS                                  #
@@ -134,46 +138,12 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 # ZSH PLUGIN SETTINGS                                                          #
 ################################################################################
 
-##################################################
-# ZAP PLUGIN MANAGER                             #
-##################################################
-
-export ZAP_HOME="$XDG_DATA_HOME/zsh/plugins"
-if [[ ! -r "$ZAP_HOME/zap/zap.zsh" ]]; then
-    git clone "https://github.com/brycekwon/zap.git" "$ZAP_HOME/zap"
-fi
-source "$ZAP_HOME/zap/zap.zsh"
-
-##################################################
-# ZSH SYNTAX HIGHLIGHTING                        #
-##################################################
-
-zap install "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
-zap load "zsh-syntax-highlighting" "zsh-syntax-highlighting.plugin.zsh"
-
-##################################################
-# ZSH AUTOSUGGESTIONS                            #
-##################################################
-
-zap install "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
-zap load "zsh-autosuggestions" "zsh-autosuggestions.plugin.zsh"
-
-##################################################
-# ZSH PURE THEME                                 #
-##################################################
-
-zap install "pure" "https://github.com/sindresorhus/pure"
-zap load "pure" "async.zsh"
-zap load "pure" "pure.zsh"
-
-fpath+=("$ZAP_HOME/pure")
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 autoload -U promptinit; promptinit
-
-PURE_GIT_PULL=0
-
 zstyle :prompt:pure:git:stash show yes
-
+PURE_GIT_PULL=0
 prompt pure
 
 
@@ -207,6 +177,8 @@ export FZF_DEFAULT_OPTS="
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
 "
+
+alias bfs="bfs -exclude -name .git -exclude -name .DS_Store"
 
 source "$(brew --prefix fzf)/shell/completion.zsh"
 
@@ -281,14 +253,14 @@ function open() {
     fi
 }
 
-# slightly more versatile codium command
-function codium() {
-    if [ "$#" -eq 0 ]; then
-        command codium "./"
-    else
-        command codium "$@"
-    fi
-}
+# # slightly more versatile codium command
+# function codium() {
+#     if [ "$#" -eq 0 ]; then
+#         command codium "./"
+#     else
+#         command codium "$@"
+#     fi
+# }
 
 # slightly more versatile code command
 function code() {
@@ -344,7 +316,7 @@ alias t3="tree --dirsfirst -L 3"
 ##################################################
 
 alias mk="mkdir -p"
-alias rm="rm -Irf"
+alias rm="trash"
 alias cl="clear"
 
 alias oo="open"
@@ -368,6 +340,8 @@ alias now="date +'%Y-%m-%d %H:%M:%S'"
 alias timestamp="date +%s"
 
 alias path="echo $PATH | tr ':' '\n'"
+alias mpath="manpath | tr ':' '\n'"
+alias fpath="echo $fpath | tr ' ' '\n'"
 
 ##################################################
 # MISCELLANEOUS                                  #

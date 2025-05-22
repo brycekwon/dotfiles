@@ -1,16 +1,23 @@
+brew "pure"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+
 brew "coreutils"
 brew "findutils"
 brew "diffutils"
-# brew uutils-coreutils
-# brew uutils-findutils
-# brew uutils-diffutils
-
+brew "gnu-sed"
+brew "gnu-tar"
+# brew "uutils-coreutils"
+# brew "uutils-findutils"
+# brew "uutils-diffutils"
+brew "ripgrep"
+brew "fd"
 brew "tree"
+
+brew "fzf"
+brew "tokei"
 brew "git"
 brew "gnupg"
-brew "fd"
-brew "fzf"
-brew "ripgrep"
 brew "rsync"
 brew "rclone"
 brew "neovim"
@@ -20,6 +27,8 @@ brew "colima"
 brew "docker"
 brew "docker-buildx"
 brew "docker-compose"
+# brew "podman"
+# brew "podman-compose"
 
 brew "go"
 brew "rust"
@@ -29,12 +38,16 @@ brew "nodenv"
 brew "ffmpeg"
 brew "imagemagick"
 
+brew "iperf3"
+brew "wget"
 brew "oha"
 brew "xh"
 
-cask "alfred"
+# brew "hugo"
+
+cask "ghostty"
 cask "firefox"
-cask "vscodium"
 cask "obsidian"
+cask "visual-studio-code"
 
 cask "font-geist-mono-nerd-font"
