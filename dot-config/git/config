@@ -1,44 +1,58 @@
 [user]
     name = "Bryce Kwon"
     email = "me@brycekwon.com"
-    signingkey = "0xB6F50FFE83AFC0EA"
+    signingKey = "0xB6F50FFE83AFC0EA"
+
 [core]
-    trustctime = false
-    untrackedCache = true
-    precomposeunicode = false
-    whitespace="fix,trailing-space,cr-at-eol"
-    excludesfile = "~/.config/git/ignore"
-	quotePath = false
-	commitGraph = true
+    autocrlf = "input"
+    compression = 9
+    whitespace = "fix,tabwidth=4"
+    fsync = "committed,-loose-object"
+    fsyncMethod = "fsync"
+
 [init]
-    defaultbranch = "main"
-[commit]
-    template = "~/.config/git/commit"
-    gpgsign = true
-[push]
-    default = "simple"
-    followTags = true
-[rerere]
-    enabled = true
+    defaultBranch = "main"
+    defaultObjectFormat = "sha1"
+    defaultRefFormat = "files"
+
 [diff]
-    renames = copies
-[diff "bin"]
-    textconv = hexdump -v -C
-[color]
-    ui = auto
+    context = 3
+    renames = "copies"
+    interHunkContext = 10
+
+[fetch]
+    prune = true
+    pruneTags = true
+    writeCommitGraph = true
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+    default = "current"
+    followTags = true
+
+[commit]
+    gpgsign = true
+    template = "~/.config/git/commit"
+
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
+
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red
     new = green
+
 [color "status"]
     added = green
     changed = yellow
     untracked = red
+
 [alias]
     ai = "add"
     aa = "add --all"
@@ -60,15 +74,3 @@
     gr = "log --color --graph --pretty=format:'%Cred%H%Creset%d%nAuthor: %C(bold blue)%an <%ae> %Cgreen(%ai)%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%n%CresetSigned: %C(bold blue)%GS %C(magenta)%GK%n%n%C(yellow)%s%Creset%n%n%b%n'"
     up = "remote -v"
     authors = "!git log --format='%aN <%aE>' | sort -u"
-[receive]
-	advertisePushOptions = true
-	procReceiveRefs = refs/for
-[gc]
-	writeCommitGraph = true
-[fetch]
-	writeCommitGraph = true
-[safe]
-	directory = *
-[uploadpack]
-	allowfilter = true
-	allowAnySHA1InWant = true
