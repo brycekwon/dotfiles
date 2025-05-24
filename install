@@ -1,5 +1,16 @@
 #!/usr/bin/env zsh
 
+if [[ -z "${CI}" ]]; then
+  sudo -v
+
+  # Keep-alive: update existing `sudo` time stamp until script has finished
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
+
+print "Setting default umask"
+
+launchctl config user umask 077
+
 printf "Setting default macOS global configuration options"
 
 defaults write -g InitialKeyRepeat -int 15
