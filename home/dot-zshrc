@@ -10,7 +10,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_DATA_HOME="$HOME/.local/state"
+export XDG_STATE_HOME="$HOME/.local/state"
 
 ##################################################
 # HOMEBREW PACKAGE MANAGER                       #
@@ -133,14 +133,12 @@ if [[ ! -d "$ZSH_CACHE" ]]; then
     mkdir -p "$ZSH_CACHE"
 fi
 autoload -Uz compinit && compinit -i -C -d "$ZSH_CACHE/zcompcache"
-autoload -Uz colors && colors
 
 # enable zsh completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select _extensions _complete _approximate
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-setopt autocd
 unsetopt prompt_sp
 
 ##################################################
