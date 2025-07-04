@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# create a container runtime with lima
+
+# check if running as root: this should NOT be done
+if [ "$(id -u)" -eq 0 ]; then
+    printf "Error: this program should not be run with elevated privileges.\n" >&2
+    exit 1
+fi
+
+# limactl start template://docker --cpus 4 --disk 64 --memory 8.0
+
+# docker context create lima-docker --docker "host=unix:///Users/brycekwon/.lima/docker/sock/docker.sock"
+# docker context use lima-docker

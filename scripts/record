@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+# record video/audio/screen with ffmpeg
+
+# check if running as root: this should NOT be done
+if [ "$(id -u)" -eq 0 ]; then
+    printf "Error: this program should not be run with elevated privileges.\n" >&2
+    exit 1
+fi
+
+# record() {
+#     outfile="${1:-$(date '+%Y-%m-%d_%H%M%S')}"
+
+#     ffmpeg -f avfoundation -i "1:" -c:v h264 -qp 0 "$outfile".mkv &
+#     echo $! > /tmp/video_pid
+
+#     ffmpeg -f avfoundation -i ":0" "$outfile".wav &
+#     echo $! > /tmp/audio_pid
+
+#     echo "Recording..."
+# }
+
+# end() {
+#     kill -15 "$(cat /tmp/video_pid)" "$(cat /tmp/audio_pid)" && rm -f /tmp/video_pid /tmp/audio_pid
+# }
+
+# ([[ -f /tmp/video_pid ]] && end && exit 0) || record

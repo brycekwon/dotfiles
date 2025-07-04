@@ -1,0 +1,80 @@
+[user]
+    name = "Bryce Kwon"
+    email = "bryce@brycekwon.com"
+    signingKey = "0xFA92024AB01E7839"
+
+[core]
+    autocrlf = "input"
+    whitespace = "fix,tabwidth=4"
+    fsync = "committed,-loose-object"
+    fsyncMethod = "fsync"
+
+[init]
+    defaultBranch = "main"
+    defaultObjectFormat = "sha1"
+    defaultRefFormat = "files"
+
+[fetch]
+    prune = true
+    pruneTags = true
+    writeCommitGraph = true
+
+[pull]
+    rebase = true
+
+[push]
+    default = "current"
+    autoSetupRemote = true
+    followTags = true
+
+[commit]
+    template = "~/.config/git/commit"
+
+[format]
+    signature = ""
+    signOff = true
+
+[diff]
+    context = 3
+    renames = "copies"
+    interHunkContext = 10
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red
+    new = green
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
+[alias]
+    ai = "add"
+    aa = "add --all"
+    ap = "add -–patch"
+    ci = "commit"
+    rr = "reset"
+    br = "branch --all --verbose"
+    bd = "branch --delete --verbose"
+    co = "switch"
+    cb = "switch -c"
+    sl = "stash list"
+    ss = "stash push"
+    sp = "stash pop"
+    sd = "stash drop"
+    st = "status"
+    up = "remote -v"
+    vc = "verify-commit --verbose"
+    vt = "verify-tag --verbose"
+    lg = "log --color --graph --pretty=format:'%Cred%h %Cgreen(%ci) %C(bold blue)[%an]%Creset %C(yellow)%s%Creset%d'"
+    gr = "log --color --graph --pretty=format:'%Cred%H%Creset%d%nAuthor: %C(bold blue)%an <%ae> %Cgreen(%ai)%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%n%Creset%n%C(yellow)%s%Creset%n%n%b%n'"
+    rl = "reflog --color --pretty=format:'%Cred%h %Cgreen(%ci) %C(bold blue)[%an]%Creset %C(yellow)%gs%Creset %C(cyan)%gd%Creset'"
+    rg = "reflog --color --pretty=format:'%Cred%H%Creset %C(cyan)%gd%Creset%nAction: %C(yellow)%gs%Creset%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%Creset%n%Creset%n%C(yellow)%s%Creset%n%n%b%n'"
+    authors = "!git log --format='%aN <%aE>' | sort -u"

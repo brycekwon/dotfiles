@@ -1,0 +1,10 @@
+Host prd-bk-droplet-01
+    HostName 128.199.6.100
+    Port 22
+    User suntory
+
+Host git.brycekwon.com
+    HostName 128.199.6.100
+    Port 22
+    User git
+

@@ -1,0 +1,10 @@
+theme = catppuccin-macchiato
+
+font-family = "GeistMono Nerd Font"
+font-size = 16
+font-feature = -liga
+
+window-width = 130
+window-height = 40
+window-padding-x = 5
+window-padding-y = 0

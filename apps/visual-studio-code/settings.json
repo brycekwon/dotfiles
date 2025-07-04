@@ -1,0 +1,85 @@
+{
+    "workbench.colorTheme": "Catppuccin Macchiato",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.enablePreview": false,
+    "workbench.statusBar.visible": false,
+    "workbench.startupEditor": "none",
+    "workbench.tips.enabled": false,
+    "workbench.tree.enableStickyScroll": false,
+    "workbench.tree.renderIndentGuides": "none",
+    "workbench.tree.indent": 8,
+    "workbench.navigationControl.enabled": false,
+    "workbench.layoutControl.enabled": false,
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "explorer.decorations.badges": false,
+    "editor.fontFamily": "GeistMono Nerd Font, Menlo, monospace",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 1.25,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "comment",
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "editor.minimap.enabled": false,
+    "editor.find.history": "never",
+    "editor.find.replaceHistory": "never",
+    "editor.stickyScroll.enabled": false,
+    "editor.colorDecorators": false,
+    "editor.codeLens": false,
+    "editor.lightbulb.enabled": "off",
+    "editor.lineNumbers": "relative",
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.showFoldingControls": "never",
+    "editor.occurrencesHighlight": "off",
+    "editor.linkedEditing": true,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "git.decorations.enabled": false,
+    "window.zoomLevel": 0.5,
+    "window.commandCenter": false,
+    "window.confirmSaveUntitledWorkspace": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.autoSave": "afterDelay",
+    "telemetry.feedback.enabled": false,
+    "telemetry.telemetryLevel": "off",
+    "extensions.ignoreRecommendations": true,
+    "chat.agent.enabled": false,
+    "chat.commandCenter.enabled": false,
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.editor.empty.hint": "hidden",
+    "files.associations": {
+        "*.tmpl": "go-template"
+    },
+    "files.exclude": {
+        "**/.ipynb_checkpoints": true,
+        "**/.venv": true,
+        "**/*.egg-info": true,
+        "**/node_modules": true
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "editor.folding": false,
+    "editor.foldingHighlight": false,
+    "jupyter.interactiveWindow.textEditor.cellFolding": false,
+    "jupyter.interactiveWindow.textEditor.autoMoveToNextCell": false,
+    "jupyter.interactiveWindow.textEditor.autoAddNewCell": false,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.logging.level": "off",
+    "notebook.experimental.generate": false,
+    "notebook.consolidatedOutputButton": false,
+    "notebook.showFoldingControls": "never",
+    "breadcrumbs.enabled": false
+}

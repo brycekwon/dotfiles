@@ -1,0 +1,232 @@
+################################################################################
+# GLOBAL SETTINGS                                                              #
+################################################################################
+
+# if not running interactively, exit
+[[ -o interactive ]] || exit
+
+# disable global configuration on macos (/etc/zprofile & /etc/zshrc)
+unsetopt GLOBAL_RCS
+
+##################################################
+# FPATH                                          #
+##################################################
+
+fpath=("/usr/share/zsh/5.9/functions")
+fpath=("/usr/share/zsh/site-functions" $fpath)
+fpath=("${HOMEBREW_PREFIX}/share/zsh/site-functions" $fpath)
+
+################################################################################
+# ZSH SETTINGS                                                                 #
+################################################################################
+
+##################################################
+# ZSH KEYBINDS                                   #
+##################################################
+
+# enable vi-mode
+bindkey -v
+
+# word-jump navigation
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+# cycle through historical commands
+bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-search-backward
+
+##################################################
+# ZSH HISTORY                                    #
+##################################################
+
+# define history location and limit
+HISTSIZE=10000
+SAVEHIST=10000
+
+HISTFILE="${XDG_DATA_HOME}/zsh/history"
+[ ! -f "$(dirname $HISTFILE)" ] && mkdir -p "$(dirname $HISTFILE)"
+
+# set history options
+setopt append_history
+setopt share_history
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+##################################################
+# ZSH COMPLETIONS                                #
+##################################################
+
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select _extensions _complete _approximate
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+zmodload zsh/complist
+
+[ ! -d "${XDG_CACHE_HOME}/zsh" ] && mkdir -p "${XDG_CACHE_HOME}/zsh"
+autoload -Uz compinit; compinit -i -C -d "${XDG_CACHE_HOME}/zsh/zcompcache"
+
+_comp_options+=(globdots)
+
+
+################################################################################
+# TOOLS                                                                        #
+################################################################################
+
+##################################################
+# FZF                                            #
+##################################################
+
+source "${HOMEBREW_REPOSITORY}/opt/fzf/shell/completion.zsh"
+
+_fzf_compgen_path() {
+    fd --type f --hidden --follow . "$1"
+}
+
+_fzf_compgen_dir() {
+    fd --type d --hidden --follow . "$1"
+}
+
+_fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+        cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+        ssh)          fzf --preview 'dig {}'                   "$@" ;;
+        export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+        *)            fzf --preview '[[ -d {} ]] && tree -C {} || cat {}' "$@" ;;
+    esac
+}
+
+##################################################
+# PYTHON                                         #
+##################################################
+
+# lazyload python version manager
+function pyenv() {
+    source <(command pyenv init - zsh)
+    pyenv "$@"
+}
+
+##################################################
+# NODEJS                                         #
+##################################################
+
+# lazyload node version manager
+function nodenv() {
+    source <(command nodenv init - zsh)
+    nodenv "$@"
+}
+
+################################################################################
+# STARTUP                                                                      #
+################################################################################
+
+##################################################
+# FUNCTIONS                                      #
+##################################################
+
+# shortcut for creating and entering a directory
+function md() {
+    mkdir -p "$@" && pushd "$@" > "/dev/null"
+}
+
+# improved command for opening files or directories
+function open() {
+    if [ "$#" -eq 0 ]; then
+        command open "./"
+    else
+        command open "$@"
+    fi
+}
+
+# improved command for opening files or directories with VScode
+function code() {
+    if [ "$#" -eq 0 ]; then
+        command code "./"
+    else
+        command code "$@"
+    fi
+}
+
+# disabled: homebrew autocomplete causing issue
+function _store_cache() {}
+
+##################################################
+# ALIASES                                        #
+##################################################
+
+alias dot="nvim ~/.dotfiles"
+
+alias -- -="cd -"
+alias -- ..="cd ../"
+alias -- ...="cd ../../"
+alias -- ....="cd ../../../"
+
+alias ls="ls --group-directories-first --ignore '.DS_Store' --color=auto -AL"
+alias ll="ls --group-directories-first --ignore '.DS_Store' --color=auto -AL -lh --time-style=long-iso"
+alias tree="tree --dirsfirst"
+alias t1="tree --dirsfirst -L 1"
+alias t2="tree --dirsfirst -L 2"
+alias t3="tree --dirsfirst -L 3"
+
+alias grep="grep --color=auto"
+
+alias mk="mkdir -pv"
+alias rm="trash"
+alias cl="clear"
+
+alias le="less"
+alias oo="open"
+alias of="fzf --bind 'enter:become(open {})'"
+alias nv="nvim"
+alias nf="fzf --bind 'enter:become(nvim {})'"
+alias co="code"
+alias cf="fzf --bind 'enter:become(code {})'"
+
+alias so="source"
+alias ee="exit"
+alias th="tmux -2 new-session -A -s home"
+alias coffee="caffeinate -disu"
+
+alias now="date +'%Y-%m-%d %H:%M:%S'"
+alias timestamp="date +%s"
+
+alias _path="echo $PATH | tr ':' '\n'"
+alias _manpath="echo $MANPATH | tr ':' '\n'"
+alias _fpath="echo $fpath | tr ' ' '\n'"
+
+alias update="brew update; brew upgrade; brew cleanup -s --prune=all"
+alias pkgs="brew list --installed-on-request"
+alias apps="brew list --casks"
+
+alias gpg="gpg --expert"
+
+#alias ds="docker stats"
+#alias dcu="docker compose up"
+#alias dcd="docker compose down"
+
+##################################################
+# PROMPT                                         #
+##################################################
+
+autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:stash show yes
+PURE_GIT_PULL=0
+prompt pure
+
+##################################################
+# PLUGINS                                        #
+##################################################
+
+source "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+##################################################
+# CLEANUP                                        #
+##################################################
+
+clear
