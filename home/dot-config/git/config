@@ -1,0 +1,95 @@
+[user]
+    name = "Bryce Kwon"
+    email = "bryce@brycekwon.com"
+    signingKey = "0x649167EFB549F8EF!"
+
+
+[core]
+    autocrlf = "input"
+    whitespace = "fix,tabwidth=4"
+    fsync = "committed,-loose-object"
+    fsyncMethod = "fsync"
+    excludesfile = "~/.config/git/ignore"
+    preloadIndex = true
+    untrackedCache = true
+    trustctime = false
+    compression = 9
+
+
+[init]
+    defaultBranch = "main"
+
+
+[fetch]
+    parallel = 0
+    prune = true
+    pruneTags = true
+    writeCommitGraph = true
+
+
+[pull]
+    ff = "only"
+    rebase = true
+
+
+[push]
+    default = "simple"
+    autoSetupRemote = true
+    followTags = true
+
+
+[commit]
+    verbose = true
+    template = "~/.config/git/commit"
+
+
+[branch]
+    autoSetupMerge = simple
+    sort = -committerdate
+
+
+[tag]
+    gpgSign = false
+    sort = -version:refname
+
+
+[merge]
+    conflictStyle = "diff3"
+
+
+[diff]
+    algorithm = "histogram"
+    context = 3
+    mnemonicPrefix = true
+    renames = "copies"
+    colorMoved = "default"
+    colorMovedWS = "allow-indentation-change"
+
+
+[status]
+    showUntrackedFiles = "all"
+    submoduleSummary = true
+    short = false
+    branch = true
+
+
+[color]
+    ui = "auto"
+
+
+[alias]
+    aa = "add --all"
+    ap = "add --patch"
+    ci = "commit"
+    br = "branch --all --verbose"
+    bd = "branch --delete --verbose"
+    co = "switch"
+    cb = "switch -c"
+    st = "status"
+    vc = "verify-commit --verbose"
+    vt = "verify-tag --verbose"
+    lg = "log --color --graph --pretty=format:'%Cred%h %Cgreen(%ci) %C(bold blue)[%an]%Creset %C(yellow)%s%Creset%d'"
+    gr = "log --color --graph --pretty=format:'%Cred%H%Creset%d%nAuthor: %C(bold blue)%an <%ae> %Cgreen(%ai)%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%n%Creset%n%C(yellow)%s%Creset%n%n%b%n'"
+    rl = "reflog --color --pretty=format:'%Cred%h %Cgreen(%ci) %C(bold blue)[%an]%Creset %C(yellow)%gs%Creset %C(cyan)%gd%Creset'"
+    rg = "reflog --color --pretty=format:'%Cred%H%Creset %C(cyan)%gd%Creset%nAction: %C(yellow)%gs%Creset%nCommit: %C(bold blue)%cn <%ce> %Cgreen(%ci)%Creset%n%Creset%n%C(yellow)%s%Creset%n%n%b%n'"
+    authors = "!git log --format='%aN <%aE>' | sort -u"

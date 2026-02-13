@@ -1,0 +1,310 @@
+################################################################################
+# GLOBAL SETTINGS                                                              #
+################################################################################
+
+# if not running interactively, stop
+[[ -o interactive ]] || return
+
+
+################################################################################
+# ZSH SETTINGS                                                                 #
+################################################################################
+
+##################################################
+# ZSH GENERAL                                    #
+##################################################
+
+setopt pipefail               # pipelines fail if any command fails
+setopt noclobber              # prevent accidental ">" file overwrites
+setopt interactivecomments    # allow comments in interactive commands
+
+##################################################
+# ZSH KEYBINDS                                   #
+##################################################
+
+# enable vi-mode
+bindkey -v
+
+# word-jump navigation
+bindkey '^[[1;5C' forward-word    # Ctrl + Right
+bindkey '^[[1;5D' backward-word   # Ctrl + Left
+
+# cycle through historical commands
+bindkey '^[[A' history-search-backward  # Up arrow
+bindkey '^[[B' history-search-forward   # Down arrow
+
+##################################################
+# ZSH HISTORY                                    #
+##################################################
+
+HISTSIZE=50000  # number of commands to keep in memory during session
+SAVEHIST=50000  # number of commands to save to history file
+
+setopt share_history           # share history across sessions
+setopt hist_ignore_space       # ignore commands starting with space
+setopt hist_ignore_all_dups    # remove older duplicates
+setopt hist_save_no_dups       # don't save duplicates
+setopt hist_find_no_dups       # don't show duplicates in search
+
+##################################################
+# ZSH COMPLETIONS                                #
+##################################################
+
+[[ -d "${XDG_CACHE_HOME}/zsh" ]] || mkdir -p "${XDG_CACHE_HOME}/zsh"
+
+zmodload zsh/complist
+
+setopt complete_aliases   # enable completions for aliased commands
+
+# enable completion caching
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
+
+# auto detect new commands added to PATH
+zstyle ':completion:*' rehash true
+
+# configure display behavior
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' group-name '%d'
+
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-zA-Z}={A-Za-z}' \
+  'r:|[._-]=* r:|=*' \
+  'l:|=* r:|=*'
+zstyle ':completion:*:*:*:*:*' ignored-patterns \
+  '*~' '*.swp' '*.tmp' '.DS_Store' '._*'
+
+# better kill completions (shows process names)
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# complete SSH hostnames from known_hosts
+zstyle -e ':completion:*:hosts' hosts 'reply=($(sed -n "/^[^#]/s/[, ].*//p" ${HOME}/.ssh/known_hosts 2>/dev/null))'
+
+autoload -Uz compinit
+compinit -i -d "${XDG_CACHE_HOME}/zsh/zcompdump"
+
+_comp_options+=(globdots)
+
+
+################################################################################
+# TOOLS                                                                        #
+################################################################################
+
+##################################################
+# LS                                             #
+##################################################
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/gdircolors" ]]; then
+  eval "$(gdircolors)"
+fi
+
+##################################################
+# SSH/GPG                                        #
+##################################################
+
+# create ssh control directory for connection multiplexing
+[[ -d "${XDG_CACHE_HOME}/ssh" ]] || mkdir -p "${XDG_CACHE_HOME}/ssh"
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/gpg" ]]; then
+  export GPG_TTY=$(tty)
+
+  unset SSH_AGENT_PID
+  if [[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  fi
+
+  gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi
+
+##################################################
+# FZF                                            #
+##################################################
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/fzf" ]] && [[ -x "${HOMEBREW_PREFIX}/bin/fd" ]]; then
+  export FZF_COMPLETION_TRIGGER=","
+
+  # smart default command: if in HOME, search Developer instead
+  export FZF_DEFAULT_COMMAND='
+    if [[ "$PWD" == "$HOME" ]]; then
+      fd --hidden --type f --type l --follow --strip-cwd-prefix . Developer
+    else
+      fd --hidden --type f --type l --follow --strip-cwd-prefix
+    fi
+  '
+
+  export FZF_DEFAULT_OPTS="--info=inline --reverse --margin=1 --padding=1 \
+--border --height 60% --tmux 80%,60% \
+--preview-window=right:50% \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+  if [[ -r "${HOMEBREW_REPOSITORY}/opt/fzf/shell/completion.zsh" ]]; then
+    source "${HOMEBREW_REPOSITORY}/opt/fzf/shell/completion.zsh"
+  fi
+
+  _fzf_compgen_path() {
+    if [[ "$PWD" == "$HOME" ]]; then
+      fd --type f --hidden --follow . Developer
+    else
+      fd --type f --hidden --follow . "$1"
+    fi
+  }
+
+  _fzf_compgen_dir() {
+    if [[ "$PWD" == "$HOME" ]]; then
+      fd --type d --hidden --follow . Developer
+    else
+      fd --type d --hidden --follow . "$1"
+    fi
+  }
+
+  _fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+      cd)
+        if command -v tree &> /dev/null; then
+          fzf --preview 'tree -C -L 2 {} | head -200' "$@"
+        else
+          fzf --preview 'ls -lAh {}' "$@"
+        fi
+        ;;
+      *)
+        if command -v tree &> /dev/null; then
+          fzf --preview '[[ -d {} ]] && tree -C -L 2 {} | head -200 || cat {}' "$@"
+        else
+          fzf --preview 'cat {}' "$@"
+        fi
+        ;;
+    esac
+  }
+fi
+
+##################################################
+# PYTHON                                         #
+##################################################
+
+# lazyload python version manager
+if command -v pyenv >/dev/null 2>&1; then
+  function pyenv() {
+    # remove wrapper and initialize pyenv
+    unset -f pyenv
+    eval "$(command pyenv init - zsh)"
+    pyenv "$@"
+  }
+fi
+
+##################################################
+# NODEJS                                         #
+##################################################
+
+# lazyload node version manager
+if command -v nodenv >/dev/null 2>&1; then
+  function nodenv() {
+    # remove wrapper and initialize nodenv
+    unset -f nodenv
+    eval "$(command nodenv init - zsh)"
+    nodenv "$@"
+  }
+fi
+
+
+################################################################################
+# HELPERS                                                                      #
+################################################################################
+
+# improved command for opening files or directories
+function oo() {
+  if [[ $# -eq 0 ]]; then
+    open .
+  else
+    open "$@"
+  fi
+}
+
+# improved command for opening files or directories with VScode
+if command -v code >/dev/null 2>&1; then
+  function co() {
+    if [[ $# -eq 0 ]]; then
+      code .
+    else
+      code "$@"
+    fi
+  }
+fi
+
+################################################################################
+# ALIASES                                                                      #
+################################################################################
+
+alias -- -="cd -"
+alias -- ..="cd ../"
+alias -- ...="cd ../../"
+alias -- ....="cd ../../../"
+
+if ls --version &>/dev/null; then
+  # GNU ls (from coreutils)
+  alias ls="ls --group-directories-first --color=auto --ignore=.DS_Store -A"
+  alias ll="ls --group-directories-first --color=auto --ignore=.DS_Store -Alh --time-style=long-iso"
+else
+  # BSD ls (macOS default)
+  alias ls="ls -G -A"
+  alias ll="ls -G -Alh"
+fi
+
+alias md="mkdir -pv"
+alias rm="rm -Iv"
+alias cl="clear"
+alias so="source"
+alias ee="exit"
+
+alias coffee="caffeinate -disu"
+
+alias _path='echo $PATH | tr ":" "\n"'
+alias _mpath='echo $MANPATH | tr ":" "\n"'
+alias _fpath='printf "%s\n" "${fpath[@]}"'
+
+if command -v tmux >/dev/null 2>&1; then
+  alias th="tmux -2 new-session -A -s home"
+fi
+
+if command -v brew >/dev/null 2>&1; then
+  alias update="brew update && brew upgrade && brew cleanup -s --prune=all"
+  alias pkgs="brew list --installed-on-request"
+  alias apps="brew list --casks"
+fi
+
+if command -v nvim >/dev/null 2>&1; then
+  alias nv="nvim"
+fi
+
+
+################################################################################
+# PROMPT SETTINGS                                                              #
+################################################################################
+
+##################################################
+# THEME                                          #
+##################################################
+
+autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:stash show yes
+PURE_GIT_PULL=0
+prompt pure
+
+##################################################
+# PLUGINS                                        #
+##################################################
+
+if [[ -r "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
+if [[ -r "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi

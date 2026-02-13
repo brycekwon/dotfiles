@@ -1,0 +1,23 @@
+theme = "Catppuccin Macchiato"
+
+#font-family = "GeistMono Nerd Font"
+font-family = "FiraCode Nerd Font"
+font-size = 16
+font-feature = -calt, -liga, -dlig
+
+cursor-style = "bar"
+cursor-style-blink = true
+
+shell-integration-features = no-cursor, ssh-env
+bell-features = no-attention, no-system, no-title
+
+title = " "
+window-width = 130
+window-height = 40
+window-padding-x = 10
+window-padding-y = 5
+
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+
+confirm-close-surface = false

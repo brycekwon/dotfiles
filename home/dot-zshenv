@@ -1,0 +1,190 @@
+################################################################################
+# GLOBAL SETTINGS                                                              #
+################################################################################
+
+# disable global configuration on macos (/etc/zprofile & /etc/zshrc)
+setopt NO_GLOBAL_RCS
+
+##################################################
+# LOCALE SPECIFICATION                           #
+##################################################
+
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
+##################################################
+# XDG DIRECTORY SPECIFICATION                    #
+##################################################
+
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+
+##################################################
+# PATH, MANPATH, INFOPATH DEFAULTS               #
+##################################################
+
+export PATH="/usr/bin:/usr/sbin:/bin:/sbin"
+export MANPATH="/usr/share/man"
+export INFOPATH="/usr/share/info"
+
+##################################################
+# FPATH                                          #
+##################################################
+
+fpath=("/usr/share/zsh/${ZSH_VERSION}/functions")
+
+##################################################
+# DEFAULT PROGRAMS                               #
+##################################################
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="less"
+
+
+################################################################################
+# HOMEBREW PACKAGE MANAGER                                                     #
+################################################################################
+
+if [[ -x "/opt/homebrew/bin/brew" ]]; then
+  export HOMEBREW_REPOSITORY="/opt/homebrew"
+  export HOMEBREW_PREFIX="${HOMEBREW_REPOSITORY}"
+  export HOMEBREW_CELLAR="${HOMEBREW_REPOSITORY}/Cellar"
+  export HOMEBREW_CACHE="${XDG_CACHE_HOME}/homebrew"
+
+  export HOMEBREW_NO_EMOJI=1
+  export HOMEBREW_NO_ANALYTICS=1
+  export HOMEBREW_NO_ENV_HINTS=1
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  export HOMEBREW_NO_INSECURE_REDIRECT=1
+  export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+  PATH="${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:${PATH}"
+  MANPATH="${HOMEBREW_PREFIX}/share/man:${MANPATH}"
+  INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH}"
+
+  fpath=("${HOMEBREW_PREFIX}/share/zsh/site-functions" $fpath)
+
+  [[ -d "${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin:${PATH}"
+  [[ -d "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin:${PATH}"
+  [[ -d "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
+  [[ -d "${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin:${PATH}"
+  [[ -d "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+  [[ -d "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
+  [[ -d "${HOMEBREW_PREFIX}/opt/diffutils/bin" ]] && PATH="${HOMEBREW_PREFIX}/opt/diffutils/bin:${PATH}"
+fi
+
+
+################################################################################
+# CONFIGURATION                                                                #
+################################################################################
+
+##################################################
+# ZSH                                            #
+##################################################
+
+export HISTFILE="${XDG_DATA_HOME}/zsh/history"
+[[ -f "${HISTFILE}" ]] || { mkdir -p "$(dirname "${HISTFILE}")" && touch "${HISTFILE}"; }
+
+##################################################
+# LESS                                           #
+##################################################
+
+export LESS="cR"
+export LESSCHARSET="utf-8"
+
+export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
+export LESSHISTSIZE=10000
+
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+
+##################################################
+# GIT                                            #
+##################################################
+
+export GIT_CONFIG_NOSYSTEM=true
+export GIT_CONFIG_GLOBAL="${XDG_CONFIG_HOME}/git/config"
+
+##################################################
+# PYTHON                                         #
+##################################################
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/pyenv" ]]; then
+  # python version manager (pyenv <https://github.com/pyenv/pyenv>)
+  export PYENV_ROOT="${XDG_DATA_HOME}/python/pyenv"
+  PATH="${PYENV_ROOT}/shims:${PATH}"
+fi
+
+# python behavior
+export PYTHONUNBUFFERED=1
+export PYTHONDONTWRITEBYTECODE=1
+
+# python history
+export PYTHON_HISTORY="${XDG_DATA_HOME}/python/history"
+[[ -f "${PYTHON_HISTORY}" ]] || { mkdir -p "$(dirname "${PYTHON_HISTORY}")" && touch "${PYTHON_HISTORY}"; }
+
+# pip behavior
+export PIP_CACHE_DIR="${XDG_CACHE_HOME}/pip"
+export PIP_REQUIRE_VIRTUALENV=true
+
+##################################################
+# JAVASCRIPT                                     #
+##################################################
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/nodenv" ]]; then
+  # node version manager (nodenv <https://github.com/nodenv/nodenv>)
+  export NODENV_ROOT="${XDG_DATA_HOME}/node/nodenv"
+  PATH="${NODENV_ROOT}/shims:${PATH}"
+fi
+
+# node history
+export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node/history"
+[[ -f "${NODE_REPL_HISTORY}" ]] || { mkdir -p "$(dirname "${NODE_REPL_HISTORY}")" && touch "${NODE_REPL_HISTORY}"; }
+
+# npm behavior
+export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
+export NPM_CONFIG_FUND=false
+
+##################################################
+# GOLANG                                         #
+##################################################
+
+# golang behavior
+if [[ -x "${HOMEBREW_PREFIX}/bin/go" ]]; then
+  export GOPATH="${XDG_DATA_HOME}/go"
+  export GOCACHE="${XDG_CACHE_HOME}/go/build"
+  export GOMODCACHE="${XDG_CACHE_HOME}/go/mod"
+fi
+
+##################################################
+# JAVA                                           #
+##################################################
+
+if [[ -d "${HOMEBREW_PREFIX}/opt/openjdk" ]]; then
+  export JAVA_HOME="${HOMEBREW_PREFIX}/opt/openjdk"
+  PATH="${HOMEBREW_PREFIX}/opt/openjdk/bin:${PATH}"
+fi
+
+##################################################
+# COLIMA                                         #
+##################################################
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/colima" ]]; then
+  export COLIMA_HOME="${XDG_DATA_HOME}/colima"
+fi
+
+##################################################
+# DOCKER                                         #
+##################################################
+
+if [[ -x "${HOMEBREW_PREFIX}/bin/docker" ]]; then
+  export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+fi

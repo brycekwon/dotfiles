@@ -1,0 +1,27 @@
+# <type>: <subject> (max 50 chars)
+
+# <body> (wrap at 72 chars)
+# Explain what and why, not how
+
+
+# --- Footer ---
+# Signed-off-by: NAME <email>
+# Co-authored-by: NAME <email>
+# Reviewed-by: NAME <email>
+# Fixes: ID
+# Closes: ID
+# See: ID
+# Ref: ID
+
+
+# --- Types ---
+# feat: new feature
+# fix: bug fix
+# docs: documentation changes
+# style: formatting, missing semicolons, etc
+# refactor: code restructuring
+# perf: performance improvements
+# test: adding tests
+# chore: maintenance tasks
+# ci: CI/CD changes
+# build: build system changes

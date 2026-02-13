@@ -1,0 +1,32 @@
+Host *
+  # security
+  PasswordAuthentication no
+  ChallengeResponseAuthentication no
+  PubkeyAuthentication yes
+  ForwardAgent no
+  ForwardX11 no
+  VisualHostKey yes
+  UseKeychain no
+  AddKeysToAgent yes
+
+  # use strong algorithms only
+  HostKeyAlgorithms ssh-ed25519,rsa-sha2-512,rsa-sha2-256
+  KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512
+  Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+
+  # connection settings
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+  TCPKeepAlive yes
+
+  # security features
+  StrictHostKeyChecking ask
+  VerifyHostKeyDNS yes
+  HashKnownHosts yes
+
+  # performance
+  Compression yes
+  ControlMaster auto
+  ControlPath ~/.cache/ssh/control-%r@%h:%p
+  ControlPersist 10m

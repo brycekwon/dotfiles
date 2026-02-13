@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# JavaScript/Node
+node_modules/
+
+# Java
+target/
+.gradle/
+
+# Go
+vendor/
