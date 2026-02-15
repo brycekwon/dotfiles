@@ -128,6 +128,10 @@ export PYTHON_HISTORY="${XDG_DATA_HOME}/python/history"
 export PIP_CACHE_DIR="${XDG_CACHE_HOME}/pip"
 export PIP_REQUIRE_VIRTUALENV=true
 
+# package behavior
+export IPYTHONDIR="${XDG_CACHE_HOME}/ipython"
+export MPLCONFIGDIR="${XDG_CACHE_HOME}/matplotlib"
+
 ##################################################
 # JAVASCRIPT                                     #
 ##################################################
