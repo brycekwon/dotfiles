@@ -37,6 +37,9 @@ bindkey '^[[B' history-search-forward   # Down arrow
 # ZSH HISTORY                                    #
 ##################################################
 
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+[[ -f "${HISTFILE}" ]] || { mkdir -p "$(dirname "${HISTFILE}")" && touch "${HISTFILE}"; }
+
 HISTSIZE=50000  # number of commands to keep in memory during session
 SAVEHIST=50000  # number of commands to save to history file
 
