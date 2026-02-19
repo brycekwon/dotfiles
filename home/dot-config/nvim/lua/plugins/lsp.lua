@@ -57,8 +57,8 @@ return {
             automatic_installation = false,
             ensure_installed = {
                 -- python
-                "basedpyright",     -- lsp + type checker
-                "ruff",             -- linter
+                "pyright",      -- lsp + type checker
+                "ruff",         -- linter
 
                 -- javascript/typescript
                 "ts_ls",            -- lsp + type checker

@@ -1,4 +1,5 @@
-theme = "Catppuccin Macchiato"
+#theme = "Catppuccin Macchiato"
+theme = "One Double Dark"
 
 #font-family = "GeistMono Nerd Font"
 font-family = "FiraCode Nerd Font"
