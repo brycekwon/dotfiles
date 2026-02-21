@@ -28,7 +28,7 @@ brew "gawk"
 
 # interactive
 brew "neovim"
-brew "tmux"
+# brew "tmux"
 
 # search
 brew "fd"
@@ -81,7 +81,8 @@ brew "openjdk"  # java virtual machine
 
 brew "brave-browser"
 brew "ghostty"
-brew "visual-studio-code"
+# brew "visual-studio-code"
+brew "vscodium"
 
 ##################################################
 # FONTS                                          #

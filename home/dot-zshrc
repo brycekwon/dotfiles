@@ -234,9 +234,9 @@ function oo() {
 if command -v code >/dev/null 2>&1; then
   function co() {
     if [[ $# -eq 0 ]]; then
-      code .
+      codium .
     else
-      code "$@"
+      codium "$@"
     fi
   }
 fi
@@ -258,6 +258,10 @@ else
   # BSD ls (macOS default)
   alias ls="ls -G -A"
   alias ll="ls -G -Alh"
+fi
+
+if tree --version &>/dev/null; then
+  alias tree="tree --dirsfirst"
 fi
 
 alias md="mkdir -pv"
