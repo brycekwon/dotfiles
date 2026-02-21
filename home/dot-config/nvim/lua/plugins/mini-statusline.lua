@@ -59,24 +59,24 @@ return {
             content = {
                 active = function()
                     local mode, mode_hl = sl.section_mode({ trunc_width = 120 })
-                    local filename = sl.section_filename({ trunc_width = 200 })
+                    -- local filename = sl.section_filename({ trunc_width = 200 })
                     local bufline = buffers_list(90)
 
                     return sl.combine_groups({
                         { hl = mode_hl, strings = { mode } },
-                        { hl = "MiniStatuslineFilename", strings = { filename } },
-                        "%=",
+                        -- { hl = "MiniStatuslineFilename", strings = { filename } },
                         { hl = "MiniStatuslineFilename", strings = { bufline } },
+                        "%=",
                         { hl = "MiniStatuslineDevinfo", strings = { "%l:%c", "%p%%" } },
                     })
                 end,
 
                 inactive = function()
-                    local filename = sl.section_filename({ trunc_width = 200 })
+                    -- local filename = sl.section_filename({ trunc_width = 200 })
                     local bufline = buffers_list(90)
 
                     return sl.combine_groups({
-                        { hl = "MiniStatuslineInactive", strings = { filename } },
+                        -- { hl = "MiniStatuslineInactive", strings = { filename } },
                         "%=",
                         { hl = "MiniStatuslineInactive", strings = { bufline, "%l:%c", "%p%%" } },
                     })

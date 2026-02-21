@@ -1,3 +1,2 @@
 dot-config/docker
-dot-config/nvim/lua/plugins/catppuccin.lua
-dot-config/tmux
+dot-config/nvim/lua/plugins/noice.lua

@@ -52,7 +52,7 @@ return {
                 group_empty_dirs = true,
             },
 
-            enable_git_status = true,
+            enable_git_status = false,
             git_status = {
                 symbols = {
                     added     = "+",
