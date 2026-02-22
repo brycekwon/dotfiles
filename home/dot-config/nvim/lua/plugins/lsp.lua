@@ -65,7 +65,7 @@ return {
                 -- "eslint-lsp",       -- linter
 
                 -- golang
-                -- "gopls",            -- lsp + type checker
+                "gopls",            -- lsp + type checker
 
                 -- html/css
                 -- "html-lsp",         -- lsp
@@ -75,7 +75,7 @@ return {
                 "jdtls",
 
                 -- C/C++
-                -- "clangd",           -- lsp + type checker
+                "clangd",           -- lsp + type checker
 
                 -- Rust
                 -- "rust-analyzer",    -- lsp + type checker
