@@ -12,6 +12,7 @@
     "workbench.tips.enabled": false,
     "workbench.settings.enableNaturalLanguageSearch": false,
     "workbench.remoteIndicator.showExtensionRecommendations": false,
+    "workbench.editor.empty.hint": "hidden",
 
     /***** Editor Configuration *****/
 
@@ -59,15 +60,13 @@
 
     "files.exclude": {
         "**/__pycache__": true,
-        "**/.venv": true,
-        "**/.ruff_cache": true,
-        "**/.pytest_cache": true,
         "**/.ipynb_checkpoints": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/.venv": true,
         "**/*.egg-info": true,
-
-        "**/node_modules": true,
-
-        "**/*.coverage": true,
+        "**/.pytest_coverage": true,
+        "**/node_modules": true
     },
 
     "files.associations": {
@@ -194,4 +193,3 @@
     "go.toolsManagement.autoUpdate": true,
     "breadcrumbs.enabled": false,
 }
-
