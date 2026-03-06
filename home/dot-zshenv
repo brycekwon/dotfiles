@@ -67,6 +67,7 @@ if [[ -x "/opt/homebrew/bin/brew" ]]; then
 
   fpath=("${HOMEBREW_PREFIX}/share/zsh/site-functions" $fpath)
 
+  [[ -d "${HOMEBREW_PREFIX}/opt/rustup/bin" ]] && PATH="${HOMEBREW_PREFIX}/opt/rustup/bin:${PATH}"
   [[ -d "${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin:${PATH}"
   [[ -d "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin:${PATH}"
   [[ -d "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
@@ -168,6 +169,16 @@ fi
 if [[ -d "${HOMEBREW_PREFIX}/opt/openjdk" ]]; then
   export JAVA_HOME="${HOMEBREW_PREFIX}/opt/openjdk"
   PATH="${HOMEBREW_PREFIX}/opt/openjdk/bin:${PATH}"
+fi
+
+##################################################
+# RUST                                           #
+##################################################
+
+if [[ -d "${HOMEBREW_PREFIX}/opt/rustup/bin" ]]; then
+  export RUSTUP_HOME="${XDG_DATA_HOME}/rust/rustup"
+  export CARGO_HOME="${XDG_DATA_HOME}/rust/cargo"
+  PATH="${CARGO_HOME}/bin:${PATH}"
 fi
 
 ##################################################
